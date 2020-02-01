@@ -21,19 +21,13 @@ async def help(event):
     else:
         await event.edit("List modules:")
         string = ""
-        no = 1
-        noLimit = 3
         realno = 0
         TotalHelp = len(CMD_HELP)
         for i in CMD_HELP:
             realno += 1
             string += "`" + str(i)
-            if no >= noLimit:
-                no = 1
-                string += "`\n"
-            elif realno == TotalHelp:
-                string += "`\n\n\nUsage: .help <module name>"
+            if realno == TotalHelp:
+                string += f"`\n\n\nUsage: .help <module name>"
             else:
-                no += 1
-                string += "` |+| "
+                string += f"`  `[0]`  "
         await event.reply(string)
