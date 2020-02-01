@@ -122,16 +122,15 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.on$")
 async def amireallyalive(on):
     """ For .on command, check if the bot is running.  """
-    await on.edit("`"
-                     f"I'm Ready \n\n"
-                     f"------------------------------------ \n"
-                     f"Telethon: `{version.__version__}`\n"
-                     f"Python: `{python_version()}`\n"
-                     f"User: `{DEFAULTUSER}`\n"
-                     f"------------------------------------ \n"
-                     " \n\n"
-                     f"Botname: {BOT_NAME} \n\n"
-                     f"Enjoy . . .")    
+    await on.edit(f"I'm Ready \n\n"
+                  f"`------------------------------------` \n"
+                  f"Telethon: ` {version.__version__} ` \n"
+                  f"Python: ` {python_version()} ` \n"
+                  f"User: ` {DEFAULTUSER} ` \n"
+                  f"Botname: `{BOT_NAME}` \n"
+                  f"`------------------------------------` \n"
+                  f" \n\n"
+                  f"Enjoy . . .")    
 
 
 
