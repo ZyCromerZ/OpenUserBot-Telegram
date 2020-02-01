@@ -26,7 +26,7 @@ async def gen_chlog(repo, diff):
 
 
 async def is_off_br(br):
-    off_br = ['sql-extended']
+    off_br = ['master']
     for k in off_br:
         if k == br:
             return 1
@@ -38,7 +38,7 @@ async def upstream(ups):
     "For .update command, check if the bot is up to date, update if specified"
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1).lower()
-    off_repo = 'https://github.com/mkaraniya/OpenUserBot.git'
+    off_repo = 'https://github.com/ZyCromerZ/OpenUserBot-Telegram.git'
 
     try:
         txt = "`Oops.. Updater cannot continue due to some problems occured`\n\n**LOGTRACE:**\n"
@@ -57,7 +57,7 @@ async def upstream(ups):
         )
         origin = repo.create_remote('upstream', off_repo)
         origin.fetch()
-        repo.create_head('sql-extended', origin.refs.master)
+        repo.create_head('master', origin.refs.master)
         repo.heads.master.checkout(True)
 
     ac_br = repo.active_branch.name

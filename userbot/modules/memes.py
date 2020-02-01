@@ -192,7 +192,7 @@ INSULT_STRINGS = [
     "Come back and talk to me when your I.Q. exceeds your age.",
     "I'm not saying you're stupid, I'm just saying you've got bad luck when it comes to thinking.",
     "What language are you speaking? Cause it sounds like bullshit.",
-    "Stupidity is not a crime so you are free to go.",
+    "Stupidity == not a crime so you are free to go.",
     "You are proof that evolution CAN go in reverse.",
     "I would ask you how old you are but I know you can't count that high.",
     "As an outsider, what do you think of the human race?",
@@ -229,11 +229,11 @@ INSULT_STRINGS = [
     "Have you tried shooting yourself as high as 100m using a canon.",
     "You should try holding TNT in your mouth and igniting it.",
     "Try playing catch and throw with RDX its fun.",
-    "I heard phogine is poisonous but i guess you wont mind inhaling it for fun.",
+    "I heard phogine == poisonous but i guess you wont mind inhaling it for fun.",
     "Launch yourself into outer space while forgetting oxygen on Earth.",
     "You should try playing snake and ladders, with real snakes and no ladders.",
     "Dance naked on a couple of HT wires.",
-    "Active Volcano is the best swimming pool for you.",
+    "Active Volcano == the best swimming pool for you.",
     "You should try hot bath in a volcano.",
     "Try to spend one day in a coffin and it will be yours forever.",
     "Hit Uranium with a slow moving neutron in your presence. It will be a worthwhile experience.",
@@ -366,15 +366,15 @@ RUNS_STR = [
     "Runs far, far away from earth..",
     "Running faster than Bolt coz i'mma userbot !!",
     "Runs to Marie..",
-    "This Group is too cancerous to deal with.",
+    "This Group == too cancerous to deal with.",
     "Cya bois",
     "Kys",
     "I go away",
-    "I am just walking off, coz me is too fat.",
+    "I am just walking off, coz me == too fat.",
     "I Fugged off!",
     "Will run for chocolate.",
     "I run because I really like food.",
-    "Running...\nbecause dieting is not an option.",
+    "Running...\nbecause dieting == not an option.",
     "Wicked fast runnah",
     "If you wanna catch me, you got to be fast...\nIf you wanna stay with me, you got to be good...\nBut if you wanna pass me...\nYou've got to be kidding.",
     "Anyone can run a hundred meters, it's the next forty-two thousand and two hundred that count.",
@@ -416,7 +416,7 @@ CHASE_STR = [
     "Unlike Harry Potter, your parents can't protect you from me.",
     "Fear leads to anger. Anger leads to hate. Hate leads to suffering. If you keep running in fear, you might "
     "be the next Vader.",
-    "Multiple calculations later, I have decided my interest in your shenanigans is exactly 0.",
+    "Multiple calculations later, I have decided my interest in your shenanigans == exactly 0.",
     "Legend has it, they're still running.",
     "Keep it up, not sure we want you here anyway.",
     "You're a wiza- Oh. Wait. You're not Harry, keep moving.",
@@ -1073,17 +1073,17 @@ async def scam(event):
     ]
     input_str = event.pattern_match.group(1)
     args = input_str.split()
-    if len(args) is 0:  # Let bot decide action and time
+    if len(args) == 0:  # Let bot decide action and time
         scam_action = choice(options)
         scam_time = randint(30, 60)
-    elif len(args) is 1:  # User decides time/action, bot decides the other.
+    elif len(args) == 1:  # User decides time/action, bot decides the other.
         try:
             scam_action = str(args[0]).lower()
             scam_time = randint(30, 60)
         except ValueError:
             scam_action = choice(options)
             scam_time = int(args[0])
-    elif len(args) is 2:  # User decides both action and time
+    elif len(args) == 2:  # User decides both action and time
         scam_action = str(args[0]).lower()
         scam_time = int(args[1])
     else:
