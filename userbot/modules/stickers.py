@@ -235,8 +235,8 @@ async def kang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
 
-        await args.edit(f"`Sticker kanged successfully!`\
-            \nPack can be found [here](t.me/addstickers/{packname})",
+        await args.edit(f"`Maling sticker berhasil!`\
+            \nCoba liat hasilnya di [sini](t.me/addstickers/{packname})",
                         parse_mode='md')
 
 
