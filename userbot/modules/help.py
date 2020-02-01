@@ -17,12 +17,22 @@ async def help(event):
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Please specify a valid module name.")
+            await event.edit(f"module `{args}` not found,please check .help again!!")
     else:
-        await event.edit("Please specify which module do you want help for !!\
-            \nUsage: .help <module name>")
+        await event.edit("List modules:")
         string = ""
+        no = 1
+        realno = 0
+        TotalHelp = len(CMD_HELP)
         for i in CMD_HELP:
+            realno += 1
             string += "`" + str(i)
-            string += "`\n"
+            if no == 3:
+                no = 1
+                string += "`\n"
+            elif realno == TotalHelp:
+                string += "`\n\n\nUsage: .help <module name>"
+            else:
+                no = +1
+                string += "' |+| "
         await event.reply(string)
