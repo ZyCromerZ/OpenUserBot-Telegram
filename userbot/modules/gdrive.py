@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 
+import re
 import asyncio
 import math
 import os
@@ -204,28 +205,52 @@ async def gdrive_search_list(event):
 
 @register(
     pattern=
-    r"^.gsetf https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",
+    r"^.gsetf(?: |$)(.*)",
     outgoing=True)
 async def download(set):
     """For .gsetf command, allows you to set path"""
-    await set.edit("Processing ...")
+    global parent_id
+    info_download = f"Processing ..."
+    await set.edit(info_download)
     input_str = set.pattern_match.group(1)
     if input_str:
-        parent_id = input_str
-        await set.edit(
-            "Custom Folder ID set successfully. The next uploads will upload to {parent_id} till `.gdriveclear`"
-        )
-        await set.delete()
+        time.sleep(1)
+        input_length = len(input_str)
+        min_input_length = 25
+        if input_length >= min_input_length:
+            parent_id = input_str
+            
+            clean_c = re.search(r"https?://drive\.google\.com/drive/u/\d\d/folders/([-\w]{25,})",input_str)
+            if clean_c:
+                parent_id = clean_c.group(1)
+
+            clean_b = re.search(r"https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",input_str)
+            if clean_b:
+                parent_id = clean_b.group(1)
+
+            clean_a = re.search(r"https?://drive\.google\.com/drive/folders/([-\w]{25,})",input_str)
+            if clean_a:
+                parent_id = clean_a.group(1)
+
+            folder_link = f"^https://drive.google.com/drive/folders/" + parent_id
+            await set.edit( info_download + f"\nCustom Folder ID set successfully. \
+                \n\nThe next uploads will upload to [Here]({folder_link}) till `.gdriveclear`")
+        elif input_str == "root":
+            parent_id = None
+            await set.edit( info_download + f"\nCustom Folder ID set successfully. \
+                \n\nThe next uploads will upload to [Here](https://drive.google.com/drive/my-drive)) till `.gdriveclear`")
+        else:
+            await set.edit( info_download + f"\nFolder ID Minimal 25 characters or more. \
+                \n\nYou inputed `{input_str}`")
     else:
-        await set.edit(
-            "Use `.gdrivesp <link to GDrive Folder>` to set the folder to upload new files to."
-        )
+        await set.edit( info_download + f"\nUse `.gsetf <link to GDrive Folder>` to set the folder to upload new files to.")
 
 
 @register(pattern="^.gsetclear$", outgoing=True)
 async def download(gclr):
     """For .gsetclear command, allows you clear ur curnt custom path"""
     await gclr.reply("Processing ...")
+    global parent_id
     parent_id = GDRIVE_FOLDER_ID
     await gclr.edit("Custom Folder ID cleared successfully.")
 
@@ -239,8 +264,7 @@ async def show_current_gdrove_folder(event):
     else:
         await event.edit(
             f"My userbot is currently uploading files to the root of my Google Drive storage.\
-            \nFind uploaded files [here](https://drive.google.com/drive/my-drive)"
-        )
+            \nFind uploaded files [here](https://drive.google.com/drive/my-drive)")
 
 
 # Get mime type and name of given file
