@@ -42,7 +42,7 @@
     "UPSTREAM_REPO_URL": {
       "description": "In case you maintain a fork, add your repo URL here.",
       "required": false,
-      "value": "https://github.com/ZyCromerZ/OpenUserBot-Telegram"
+      "value": "https://github.com/ZyCromerZ/OpenUserBot-Telegram.git"
     },
     "COUNTRY": {
       "description": "Set your Country to be used in the .time and .date commands.",

@@ -67,7 +67,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b master https://github.com/ZyCromerZ/OpenUserBot-Telegram /root/userbot
+RUN git clone -b master https://github.com/ZyCromerZ/OpenUserBot-Telegram.git /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
