@@ -48,6 +48,7 @@ async def mention_afk(mention):
     global COUNT_MSG
     global USERS
     global ISAFK
+    global BOT_NAME
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK:
             if mention.sender_id not in USERS:
@@ -78,6 +79,7 @@ async def afk_on_pm(sender):
     global ISAFK
     global USERS
     global COUNT_MSG
+    global BOT_NAME
     if sender.is_private and sender.sender_id != 777000 and not (
             await sender.get_sender()).bot:
         if PM_AUTO_BAN:
