@@ -210,3 +210,4 @@ CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
 BOT_NAME = os.environ.get("BOT_NAME", None)
+DEFAULT_BOT_NAME = os.environ.get("BOT_NAME", None)

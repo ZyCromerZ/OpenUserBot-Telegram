@@ -12,7 +12,7 @@ from shutil import which
 from os import remove
 from telethon import version
 
-from userbot import CMD_HELP, ALIVE_NAME, BOT_NAME
+from userbot import CMD_HELP, ALIVE_NAME, BOT_NAME, DEFAULT_BOT_NAME
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -154,6 +154,32 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
+@register(outgoing=True, pattern=r"^.bcname(?: |$)(.*)")
+async def setbotname(setbot):
+    """For .bcname command, allows you to rename bot"""
+    global BOT_NAME
+    await setbot.edit(f"Processing ...")
+    input_str = setbot.pattern_match.group(1)
+    if input_str:
+        BOT_NAME = input_str
+        await setbot.edit(f"\nupdate bot name to `{input_str}` done.")
+        time.sleep(1)
+        setbot.remove()
+    else:
+        await setbot.edit(f"\nUse `.setbot <bot name>` to change bot name.")
+
+@register(outgoing=True, pattern=r"^.brname")
+async def resetbotname(resetbot):
+    """For .brname command, allows you to reset bot name"""
+    await resetbot.edit(f"Processing ...")
+    global BOT_NAME
+    global DEFAULT_BOT_NAME
+    BOT_NAME = DEFAULT_BOT_NAME
+    time.sleep(1)
+    await resetbot.edit(f"Reset Bot name done ...")
+    time.sleep(1)
+    await resetbot.remove()
+
 
 CMD_HELP.update(
     {"sysd": ".sysd\
@@ -172,3 +198,9 @@ CMD_HELP.update({
     \n\n.resetalive\
     \nUsage: Resets the user to default."
 })
+CMD_HELP.update({
+    "botname":
+    ".bcname <bot name>\
+    \nUsage: Type .bcname <bot name> to see change bot name."
+    ".brname \
+    \nUsage: Type .brname to reset bot name to default"})
