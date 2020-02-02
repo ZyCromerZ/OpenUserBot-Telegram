@@ -1,5 +1,5 @@
 from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID, BOT_NAME
 from telethon.events import ChatAction
 
 
@@ -59,6 +59,7 @@ async def welcome_to_chat(event):
             elif cws and cws.reply:
                 current_saved_welcome_message = cws.reply
             current_message = await event.reply(
+                global BOT_NAME
                 current_saved_welcome_message.format(mention=mention,
                                                      title=title,
                                                      count=count,
@@ -71,7 +72,8 @@ async def welcome_to_chat(event):
                                                      my_last=my_last,
                                                      my_fullname=my_fullname,
                                                      my_username=my_username,
-                                                     my_mention=my_mention),
+                                                     my_mention=my_mention,
+                                                     BOT_NAME=BOT_NAME),
                 file=file_media)
             update_previous_welcome(event.chat_id, current_message.id)
 
@@ -156,7 +158,7 @@ CMD_HELP.update({
 .setwelcome <welcome message> or reply to a message with .setwelcome\
 \nUsage: Saves the message as a welcome note in the chat.\
 \n\nAvailable variables for formatting welcome messages :\
-\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
+\n`{mention}`, `{title}`, `{count}`, `{first}`, `{last}`, `{fullname}`, `{userid}`, `{username}`, `{my_first}`, `{my_fullname}`, `{my_last}`, `{my_mention}`, `{my_username}`, `{BOT_NAME}`\
 \n\n.checkwelcome\
 \nUsage: Check whether you have a welcome note in the chat.\
 \n\n.rmwelcome\
