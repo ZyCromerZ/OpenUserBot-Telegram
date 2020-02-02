@@ -120,16 +120,30 @@ async def set_afk(afk_e):
         await afk_e.edit(f"Going AFK!\
         \n-> {string}\n\nBy: {BOT_NAME}")
     else:
-        await afk_e.edit("Going AFK!\n\nBy: {BOT_NAME}")
+        await afk_e.edit(f"Going AFK!\n\nBy: {BOT_NAME}")
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
     raise StopPropagation
 
-@register(outgoing=True, pattern="(?i)brb(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^(b)?(B)?(r)?(R)?(b)?(B)?(?: |$)(.*)", disable_errors=True)
 async def set_brb(brb_e):
     """ For brb command, allows you to inform people that you are afk when they message you """
-    return set_afk(brb_e)
+    message = afk_e.text
+    string = afk_e.pattern_match.group(7)
+    global ISAFK
+    global AFKREASON
+    global BOT_NAME
+    if string:
+        AFKREASON = string
+        await afk_e.edit(f"Going AFK!\
+        \n-> {string}\n\nBy: {BOT_NAME}")
+    else:
+        await afk_e.edit(f"Going AFK!\n\nBy: {BOT_NAME}")
+    if BOTLOG:
+        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
+    ISAFK = True
+    raise StopPropagation
 
 
 @register(outgoing=True)
