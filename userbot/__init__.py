@@ -209,8 +209,7 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
-BOT_NAME = os.environ.get("BOT_NAME", None)
-DEFAULT_BOT_NAME = os.environ.get("BOT_NAME", None)
+BOT_NAME = os.environ.get("BOT_NAME", "My-Bot")
 
 # Telegraph 
 TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", None)
