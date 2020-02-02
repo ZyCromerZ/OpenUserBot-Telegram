@@ -162,6 +162,7 @@ async def setbotname(setbot):
     input_str = setbot.pattern_match.group(1)
     if input_str:
         BOT_NAME = input_str
+        userbot.BOT_NAME = input_str
         await setbot.edit(f"\nupdate bot name to `{input_str}` done.")
         time.sleep(1)
         setbot.remove()
