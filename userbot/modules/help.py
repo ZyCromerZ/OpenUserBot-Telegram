@@ -5,6 +5,7 @@
 #
 """ Userbot help command """
 
+import time
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -12,6 +13,8 @@ from userbot.events import register
 @register(outgoing=True, pattern="^.help(?: |$)(.*)")
 async def help(event):
     """ For .help command,"""
+    await event.edit("Getting List notes . . .")
+    time.sleep(1)
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -19,15 +22,12 @@ async def help(event):
         else:
             await event.edit(f"module `{args}` not found,please check .help again!!")
     else:
-        await event.edit("List modules:")
-        string = ""
+        string = f"List modules:\n"
         realno = 0
         TotalHelp = len(CMD_HELP)
         for i in CMD_HELP:
             realno += 1
-            string += "`" + str(i)
+            string += "`.help " + str(i) "`\n"
             if realno == TotalHelp:
-                string += f"`\n\n\nUsage: .help <module name>"
-            else:
-                string += f"`  `[0]`  "
-        await event.reply(string)
+                string += f"\n\nUsage: just copy paste above "
+        await event.edit(string)
