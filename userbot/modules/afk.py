@@ -49,7 +49,7 @@ async def mention_afk(mention):
     global COUNT_MSG
     global USERS
     global ISAFK
-    
+    global BOT_NAME
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK:
             if mention.sender_id not in USERS:
@@ -57,7 +57,7 @@ async def mention_afk(mention):
                     await mention.reply(f"I'm AFK right now.\
                         \n-> {AFKREASON}")
                 else:
-                    await mention.reply(str(choice(AFKSTR)))
+                    await mention.reply(str(choice(AFKSTR).format(BOT_NAME=BOT_NAME)))
                 USERS.update({mention.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif mention.sender_id in USERS:
@@ -66,7 +66,7 @@ async def mention_afk(mention):
                         await mention.reply(f"I'm still AFK.\
                             \n-> {AFKREASON}")
                     else:
-                        await mention.reply(str(choice(AFKSTR)))
+                        await mention.reply(str(choice(AFKSTR).format(BOT_NAME=BOT_NAME)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:
@@ -80,6 +80,7 @@ async def afk_on_pm(sender):
     global ISAFK
     global USERS
     global COUNT_MSG
+    global BOT_NAME
     if sender.is_private and sender.sender_id != 777000 and not (
             await sender.get_sender()).bot:
         if PM_AUTO_BAN:
@@ -96,7 +97,7 @@ async def afk_on_pm(sender):
                     await sender.reply(f"I'm AFK right now.\
                     \n-> {AFKREASON}")
                 else:
-                    await sender.reply(str(choice(AFKSTR)))
+                    await sender.reply(str(choice(AFKSTR).format(BOT_NAME=BOT_NAME)))
                 USERS.update({sender.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif apprv and sender.sender_id in USERS:
@@ -105,7 +106,7 @@ async def afk_on_pm(sender):
                         await sender.reply(f"I'm still AFK.\
                         \n-> {AFKREASON}")
                     else:
-                        await sender.reply(str(choice(AFKSTR)))
+                        await sender.reply(str(choice(AFKSTR).format(BOT_NAME=BOT_NAME)))
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                     COUNT_MSG = COUNT_MSG + 1
                 else:

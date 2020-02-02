@@ -20,6 +20,7 @@ from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 
 # ================= CONSTANT =================
+global BOT_NAME
 METOOSTR = [
     "Me too thanks",
     "Haha yes, me too",
