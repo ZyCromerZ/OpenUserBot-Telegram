@@ -923,14 +923,16 @@ async def shrugger(shg):
 async def police(chase):
     """ Run boi run, i'm gonna catch you !! """
     global BOT_NAME
-    await chase.edit(choice(CHASE_STR))
+    GET_CHASE_STR = choice(CHASE_STR).format(BOT_NAME=BOT_NAME)
+    await chase.edit(GET_CHASE_STR)
 
 
 @register(outgoing=True, pattern="^.run$")
 async def runner_lol(run):
     """ Run, run, RUNNN! """
     global BOT_NAME
-    await run.edit(choice(RUNS_STR))
+    GET_RUN_STR = choice(RUNS_STR).format(BOT_NAME=BOT_NAME)
+    await run.edit(GET_RUN_STR)
 
 
 @register(outgoing=True, pattern="^.metoo$")
