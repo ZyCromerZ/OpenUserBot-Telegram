@@ -27,7 +27,7 @@ async def help(event):
         TotalHelp = len(CMD_HELP)
         for i in CMD_HELP:
             realno += 1
-            string += "`.help " + str(i) "`\n"
+            string += "- `.help " + str(i) + "`\n"
             if realno == TotalHelp:
                 string += f"\n\nUsage: just copy paste above "
         await event.edit(string)
