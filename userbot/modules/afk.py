@@ -126,7 +126,7 @@ async def set_afk(afk_e):
     ISAFK = True
     raise StopPropagation
 
-@register(outgoing=True, pattern=r"^brb(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^(b)?(B)?(r)?(R)?(b)?(B)?(?: |$)(.*)", disable_errors=True)
 async def set_brb(brb_e):
     """ For brb command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
@@ -144,11 +144,6 @@ async def set_brb(brb_e):
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
     raise StopPropagation
-
-@register(outgoing=True, pattern=r"^Brb(?: |$)(.*)", disable_errors=True)
-async def set_Brb(Brb_e):
-    """ For Brb command, allows you to inform people that you are afk when they message you """
-    return set_brb(Brb_e)
 
 
 @register(outgoing=True)
@@ -186,6 +181,6 @@ CMD_HELP.update({
     ".afk [Optional Reason]\
 \nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
 you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
-    brb / Brb \
+    .brb \
 \nUsage: same as afk"
 })
