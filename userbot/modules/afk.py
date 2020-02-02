@@ -107,7 +107,7 @@ async def afk_on_pm(sender):
                 COUNT_MSG = COUNT_MSG + 1
 
 
-@register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^.afk(?: |$)([\s\S]*)", disable_errors=True)
 async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
@@ -126,7 +126,7 @@ async def set_afk(afk_e):
     ISAFK = True
     raise StopPropagation
 
-@register(outgoing=True, pattern=r"^[bB][rR][bB](?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^[bB][rR][bB](?: |$)([\s\S]*)", disable_errors=True)
 async def set_brb(brb_e):
     """ For brb command, allows you to inform people that you are afk when they message you """
     message = brb_e.text
