@@ -17,6 +17,7 @@ from userbot.events import register
 from userbot.modules.lang import lang
 
 # ================= CONSTANT =================
+global lang
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
@@ -24,6 +25,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 @register(outgoing=True, pattern="^.sysd$")
 async def sysdetails(sysd):
     """ For .sysd command, get system info using neofetch. """
+    global lang
     try:
         neo = "neofetch --stdout"
         fetch = await asyncrunapp(
@@ -47,6 +49,7 @@ async def sysdetails(sysd):
 @register(outgoing=True, pattern="^.botver$")
 async def bot_ver(event):
     """ For .botver command, get the bot version. """
+    global lang
     if which("git") is not None:
         invokever = "git describe --all --long"
         ver = await asyncrunapp(
@@ -138,6 +141,7 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.on$")
 async def amireallyalive(on):
     """ For .on command, check if the bot is running.  """
+    global lang
     if lang == "id":
         await on.edit(f"Dah Siap boss \n\n"
                     f"`------------------------------------` \n"
@@ -163,6 +167,7 @@ async def amireallyalive(on):
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
     message = username.text
+    global lang
     if lang == "id":
         output = '.aliveu [user baru] tidak boleh kosong'
     else:
@@ -182,6 +187,7 @@ async def amireallyaliveuser(username):
 async def amireallyalivereset(ureset):
     """ For .resetalive command, reset the username in the .alive command. """
     global DEFAULTUSER
+    global lang
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     if lang == "id":
         await ureset.edit("berhasil reset user untuk `alive`!")
