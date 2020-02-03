@@ -3,7 +3,7 @@
 """ Userbot lang command """
 
 import time
-from userbot import CMD_HELP, SET_LANG
+from userbot import CMD_HELP, SET_LANG, BOT_NAME
 from userbot.events import register
 
 lang = SET_LANG
