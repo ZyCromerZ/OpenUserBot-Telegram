@@ -188,39 +188,57 @@ async def amireallyalivereset(ureset):
     else:
         await ureset.edit("Successfully reset user for `alive`!")
 
-if str(lang) == "id":
-    CMD_HELP.update(
-        {"sysd": ".sysd\
-        \nGunanya: liat info system pake neofetch."})
-    CMD_HELP.update({"botver": ".botver\
-        \nGunanya: liat userbot version."})
-    CMD_HELP.update(
-        {"pip": ".pip <module(s)>\
-        \nGunanya: buat nyari pip modules(s)."})
-    CMD_HELP.update({
-        "on":
-        ".on\
-        \nGunanya: ketik .on buat liat bot nyala ato mati.\
-        \n\n.aliveu <text>\
-        \nGunanya: buat ganti 'user' di alive ke yg lu mau.\
-        \n\n.resetalive\
-        \nGunanya: Reset  `user` ke default."
-    })
-else:
-    CMD_HELP.update(
-        {"sysd": ".sysd\
-        \nUsage: Shows system information using neofetch."})
-    CMD_HELP.update({"botver": ".botver\
-        \nUsage: Shows the userbot version."})
-    CMD_HELP.update(
-        {"pip": ".pip <module(s)>\
-        \nUsage: Does a search of pip modules(s)."})
-    CMD_HELP.update({
-        "on":
-        ".on\
-        \nUsage: Type .on to see wether your bot is working or not.\
-        \n\n.aliveu <text>\
-        \nUsage: Changes the 'user' in alive to the text you want.\
-        \n\n.resetalive\
-        \nUsage: Resets the user to default."
-    })
+
+class Helpstring:
+    def __init__(self):
+        self.string = None;
+    def get(self):
+        if str(lang) == "id":
+            return [
+                ".sysd\
+                \nGunanya: liat info system pake neofetch.",
+
+                ".botver\
+                \nGunanya: liat userbot version.",
+
+                ".pip <module(s)>\
+                \nGunanya: buat nyari pip modules(s).",
+                
+                ".on\
+                \nGunanya: ketik .on buat liat bot nyala ato mati.\
+                \n\n.aliveu <text>\
+                \nGunanya: buat ganti 'user' di alive ke yg lu mau.\
+                \n\n.resetalive\
+                \nGunanya: Reset  `user` ke default."
+            ]
+        else:
+            return [
+                ".sysd\
+                \nUsage: Shows system information using neofetch.",
+
+                ".botver\
+                \nUsage: Shows the userbot version.",
+
+                ".pip <module(s)>\
+                \nUsage: Does a search of pip modules(s).",
+
+                ".on\
+                \nUsage: Type .on to see wether your bot is working or not.\
+                \n\n.aliveu <text>\
+                \nUsage: Changes the 'user' in alive to the text you want.\
+                \n\n.resetalive\
+                \nUsage: Resets the user to default."
+            ]
+            
+CMD_HELP.update({
+    "sysd": Helpstring().get()[0]
+})
+CMD_HELP.update({
+    "botver": Helpstring().get()[1]
+})
+CMD_HELP.update({
+    "pip": Helpstring().get()[2]
+})
+CMD_HELP.update({
+    "on": Helpstring().get()[3]
+})
