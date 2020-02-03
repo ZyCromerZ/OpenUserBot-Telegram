@@ -25,7 +25,7 @@ AFKSTR_ID = [
     "Tolong tinggalkan pesan dan buat aku merasa lebih penting daripada aku.\n\nBy: {BOT_NAME}", 
     "Aku tidak di sini jadi berhentilah menulis kepadaku, atau kamu akan menemukan dirimu dengan layar penuh dengan pesanmu sendiri.\n\nBy: {BOT_NAME}", 
     "Jika aku ada di sini, aku akan memberitahumu di mana aku berada. \n\nTapi aku tidak, tanyakan padaku ketika aku kembali ...\n\nBy: {BOT_NAME}", 
-    "Aku pergi! \NAku tidak tahu kapan aku akan kembali! \NSangat beberapa menit dari sekarang!\n\nBy: {BOT_NAME}", 
+    "Aku pergi! \nAku tidak tahu kapan aku akan kembali! \NSangat beberapa menit dari sekarang!\n\nBy: {BOT_NAME}", 
     "Aku tidak tersedia sekarang jadi tolong tinggalkan nama, nomor, dan alamatmu dan aku akan menguntitmu nanti.\n\nBy: {BOT_NAME}", 
     "Maaf, aku tidak di sini sekarang. \nJangan ragu untuk berbicara dengan pengguna saya selama Anda mau. \nSaya akan menghubungi Anda nanti.\n\nBy: {BOT_NAME}", 
     "Aku yakin kamu mengharapkan pesan tandang!\n\nBy: {BOT_NAME}", 
