@@ -188,7 +188,32 @@ async def amireallyalivereset(ureset):
     else:
         await ureset.edit("Successfully reset user for `alive`!")
 
+@register(outgoing=True, pattern="^.bcname(?: |$)(.*)")
+async def cbotname(btname):
+    """ For .bcname command, change botname """
+    BOT_NAME.reset()
+    if str(lang) == "id":
+        await dbname.edit(f"ubah nama bot ke `{botName}` berhasil")
+    else:
+        await dbname.edit(f"change botname to `{botName}` success")
 
+@register(outgoing=True, pattern="^.brname")
+async def rbotname(dbname):
+    """ For .brname command, change botname """
+    botName = dbname.pattern_match.group(1)
+    if botName:
+        BOT_NAME.change(botName)
+        if str(lang) == "id":
+            await dbname.edit(f"ubah nama bot ke `{botName}` berhasil")
+        else:
+            await dbname.edit(f"change botname to `{botName}` success")
+    else:
+        if str(lang) == "id":
+            await dbname.edit(f"nama bot tidak ditemukan,sialahkan check di ``.help botname` buat detailnya")
+        else:
+            await dbname.edit(f"botname notfound,check `.help botname` for more details")
+
+    
 class Helpstring:
     def __init__(self):
         self.string = None;
@@ -209,7 +234,12 @@ class Helpstring:
                 \n\n.aliveu <text>\
                 \nGunanya: buat ganti 'user' di alive ke yg lu mau.\
                 \n\n.resetalive\
-                \nGunanya: Reset  `user` ke default."
+                \nGunanya: Reset  `user` ke default.",
+
+                ".bcname <namabot> \
+                \nUsage: Ketik .bcname <namabot> buat ubah nama bot \
+                \n.brname \
+                \nUsage: buat reset nama bot nya ke default"
             ]
         else:
             return [
@@ -227,7 +257,12 @@ class Helpstring:
                 \n\n.aliveu <text>\
                 \nUsage: Changes the 'user' in alive to the text you want.\
                 \n\n.resetalive\
-                \nUsage: Resets the user to default."
+                \nUsage: Resets the user to default.",
+
+                ".bcname <botname> \
+                \nUsage: Type .bcname <botname> to change bot name \
+                \n.brname \
+                \nUsage: To reset botname to default"
             ]
             
 CMD_HELP.update({
@@ -241,4 +276,7 @@ CMD_HELP.update({
 })
 CMD_HELP.update({
     "on": Helpstring().get()[3]
+})
+CMD_HELP.update({
+    "botname": Helpstring().get()[4]
 })
