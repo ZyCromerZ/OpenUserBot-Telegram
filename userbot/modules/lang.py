@@ -76,28 +76,23 @@ lang = language()
 class Afkstr:
     def __init__(self):
         self.afkstr = None
-
-    def __str__(self):
-        if lang == "id":
-            self.afkstr = AFKSTR_ID
+    def get(self):
+        if str(lang) == "id":
+            return AFKSTR_ID
         else:
-            self.afkstr = AFKSTR_EN
-        return self.afkstr
-
-AFKSTR = Afkstr()
+            return AFKSTR_EN
 
 class Helpstring:
     def __init__(self):
         self.isi = None
     
     def __str__(self):
-        if lang == "id":
-            self.afkstr = ".setlang: untuk mengubah bahasa bot"
+        if str(lang) == "id":
+            self.isi = ".setlang: untuk mengubah bahasa bot"
         else:
-            self.afkstr = ".setlang: for change bot language"
-        return self.afkstr
+            self.isi = ".setlang: for change bot language"
+        return self.isi
 
-helpstring = Helpstring()
 # ================= Setup Class End =================
 @register(outgoing=True, pattern="^.setlang(?: |$)(.*)")
 async def help(event):
@@ -114,4 +109,4 @@ async def help(event):
     else:
         await event.edit(f"only supported `en` and `id` ")
 
-CMD_HELP.update({"setlang": helpstring})
+CMD_HELP.update({"setlang": str(Helpstring())})

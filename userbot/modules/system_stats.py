@@ -24,7 +24,6 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 @register(outgoing=True, pattern="^.sysd$")
 async def sysdetails(sysd):
     """ For .sysd command, get system info using neofetch. """
-    global lang
     try:
         neo = "neofetch --stdout"
         fetch = await asyncrunapp(
@@ -39,7 +38,7 @@ async def sysdetails(sysd):
 
         await sysd.edit("`" + result + "`")
     except FileNotFoundError:
-        if lang == "id":
+        if str(lang) == "id":
             await sysd.edit("`neofetch ga ada,Install dulu gih!`")
         else:
             await sysd.edit("`Install neofetch first !!`")
@@ -48,7 +47,6 @@ async def sysdetails(sysd):
 @register(outgoing=True, pattern="^.botver$")
 async def bot_ver(event):
     """ For .botver command, get the bot version. """
-    global lang
     if which("git") is not None:
         invokever = "git describe --all --long"
         ver = await asyncrunapp(
@@ -69,7 +67,7 @@ async def bot_ver(event):
         stdout, stderr = await rev.communicate()
         revout = str(stdout.decode().strip()) \
             + str(stderr.decode().strip())
-        if lang == "id":
+        if str(lang) == "id":
             await event.edit(f"Tentang BOT:\n"
                             f"Versi Userbot: `{verout}`\n"
                             f"Revisi: `{revout}`\n"
@@ -84,7 +82,7 @@ async def bot_ver(event):
                             f"Python: ` {python_version()} ` \n"
                             f"")
     else:
-        if lang == "id":
+        if str(lang) == "id":
             await event.edit(
                 "Wew ga support git, lagi jalan di 5.0 - 'Extended'"
             )
@@ -140,8 +138,7 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.on$")
 async def amireallyalive(on):
     """ For .on command, check if the bot is running.  """
-    global lang
-    if lang == "id":
+    if str(lang) == "id":
         await on.edit(f"Dah Siap boss \n\n"
                     f"`------------------------------------` \n"
                     f"User: ` {DEFAULTUSER} ` \n"
@@ -166,8 +163,7 @@ async def amireallyalive(on):
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
     message = username.text
-    global lang
-    if lang == "id":
+    if str(lang) == "id":
         output = '.aliveu [user baru] tidak boleh kosong'
     else:
         output = '.aliveu [new user without brackets] nor can it be empty'
@@ -175,7 +171,7 @@ async def amireallyaliveuser(username):
         newuser = message[8:]
         global DEFAULTUSER
         DEFAULTUSER = newuser
-        if lang == "id":
+        if str(lang) == "id":
             output = 'berhasil mengubah user ke ' + newuser + '!'
         else:
             output = 'Successfully changed user to ' + newuser + '!'
@@ -186,14 +182,13 @@ async def amireallyaliveuser(username):
 async def amireallyalivereset(ureset):
     """ For .resetalive command, reset the username in the .alive command. """
     global DEFAULTUSER
-    global lang
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-    if lang == "id":
+    if str(lang) == "id":
         await ureset.edit("berhasil reset user untuk `alive`!")
     else:
         await ureset.edit("Successfully reset user for `alive`!")
 
-if lang == "id":
+if str(lang) == "id":
     CMD_HELP.update(
         {"sysd": ".sysd\
         \nGunanya: liat info system pake neofetch."})

@@ -58,7 +58,6 @@ async def welcome_to_chat(event):
                 current_saved_welcome_message = msg_o.message
             elif cws and cws.reply:
                 current_saved_welcome_message = cws.reply
-            global BOT_NAME
             current_message = await event.reply(
                 current_saved_welcome_message.format(mention=mention,
                                                      title=title,

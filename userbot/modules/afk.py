@@ -13,9 +13,9 @@ from telethon.events import StopPropagation
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
                      BOTLOG_CHATID, USERS, PM_AUTO_BAN, BOT_NAME)
 from userbot.events import register
-from userbot.modules.lang import AFKSTR
+from userbot.modules.lang import Afkstr, lang
 
-
+AFKSTR = Afkstr().get()
 
 @register(incoming=True, disable_edited=True)
 async def mention_afk(mention):
@@ -23,7 +23,6 @@ async def mention_afk(mention):
     global COUNT_MSG
     global USERS
     global ISAFK
-    global BOT_NAME
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK:
             if mention.sender_id not in USERS:
@@ -51,7 +50,6 @@ async def afk_on_pm(sender):
     global ISAFK
     global USERS
     global COUNT_MSG
-    global BOT_NAME
     if sender.is_private and sender.sender_id != 777000 and not (
             await sender.get_sender()).bot:
         if PM_AUTO_BAN:
@@ -88,7 +86,6 @@ async def set_afk(afk_e):
     string = afk_e.pattern_match.group(1)
     global ISAFK
     global AFKREASON
-    global BOT_NAME
     if string:
         AFKREASON = string
         await afk_e.edit(f"Going AFK!\
@@ -107,7 +104,6 @@ async def set_brb(brb_e):
     string = brb_e.pattern_match.group(1)
     global ISAFK
     global AFKREASON
-    global BOT_NAME
     if string:
         AFKREASON = string
         await brb_e.edit(f"Going AFK!\
@@ -149,12 +145,21 @@ async def type_afk_is_not_true(notafk):
         USERS = {}
         AFKREASON = None
 
+class Helpstring:
+    def __init__(self):
+        self.string = None;
+    def __str__(self):
+        if str(lang) == "id":
+            return ".afk [alasan opsional]\nUsage: ubah status mu menjadi afk.\nBalas semua orang dengan yg PM/tag kamu \
+            \nkamu memberitahu mereka kalu kamu sedang afk(alasan).\n\nMematikan afk status dengan mengetik apapun,dimanapun \
+            \n.brb \
+            \nUsage: sama seperti afk"
+        else:
+            return ".afk [Optional Reason]\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
+            \nyou telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere. \
+            \n.brb \
+            \nUsage: same as afk"
 
 CMD_HELP.update({
-    "afk":
-    ".afk [Optional Reason]\
-\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
-you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
-    .brb \
-\nUsage: same as afk"
+    "afk": str(Helpstring())
 })

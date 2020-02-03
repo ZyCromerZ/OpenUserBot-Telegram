@@ -20,7 +20,7 @@ from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 
 # ================= CONSTANT =================
-global BOT_NAME
+
 METOOSTR = [
     "Me too thanks",
     "Haha yes, me too",
@@ -691,8 +691,6 @@ async def slap(replied_user, event):
     user_id = replied_user.id
     first_name = replied_user.first_name
     username = replied_user.username
-    global BOT_NAME
-
     if username:
         slapped = "@{}".format(username)
     else:
@@ -757,7 +755,6 @@ async def cry(e):
 @register(outgoing=True, pattern="^.insult$")
 async def insult(e):
     """ I make you cry !! """
-    global BOT_NAME
     await e.edit(choice(INSULT_STRINGS))
 
 
@@ -923,7 +920,6 @@ async def shrugger(shg):
 @register(outgoing=True, pattern="^.chase$")
 async def police(chase):
     """ Run boi run, i'm gonna catch you !! """
-    global BOT_NAME
     GET_CHASE_STR = choice(CHASE_STR).format(BOT_NAME=BOT_NAME)
     await chase.edit(GET_CHASE_STR)
 
@@ -931,7 +927,6 @@ async def police(chase):
 @register(outgoing=True, pattern="^.run$")
 async def runner_lol(run):
     """ Run, run, RUNNN! """
-    global BOT_NAME
     GET_RUN_STR = choice(RUNS_STR).format(BOT_NAME=BOT_NAME)
     await run.edit(GET_RUN_STR)
 
