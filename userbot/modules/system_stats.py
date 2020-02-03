@@ -191,27 +191,28 @@ async def amireallyalivereset(ureset):
 @register(outgoing=True, pattern="^.bcname(?: |$)(.*)")
 async def cbotname(btname):
     """ For .bcname command, change botname """
-    BOT_NAME.reset()
-    if str(lang) == "id":
-        await dbname.edit(f"ubah nama bot ke `{botName}` berhasil")
+    botName = btname.pattern_match.group(1)
+    if botName:
+        BOT_NAME.change(botName)
+        if str(lang) == "id":
+            await btname.edit(f"ubah nama bot ke `{botName}` berhasil")
+        else:
+            await btname.edit(f"change botname to `{botName}` success")
     else:
-        await dbname.edit(f"change botname to `{botName}` success")
+        if str(lang) == "id":
+            await btname.edit(f"nama bot tidak ditemukan,sialahkan check di ``.help botname` buat detailnya")
+        else:
+            await btname.edit(f"botname notfound,check `.help botname` for more details")
 
 @register(outgoing=True, pattern="^.brname")
 async def rbotname(dbname):
     """ For .brname command, change botname """
-    botName = dbname.pattern_match.group(1)
-    if botName:
-        BOT_NAME.change(botName)
-        if str(lang) == "id":
-            await dbname.edit(f"ubah nama bot ke `{botName}` berhasil")
-        else:
-            await dbname.edit(f"change botname to `{botName}` success")
+    BOT_NAME.reset()
+    if str(lang) == "id":
+        await dbname.edit(f"reset namabot ke default berhasil")
     else:
-        if str(lang) == "id":
-            await dbname.edit(f"nama bot tidak ditemukan,sialahkan check di ``.help botname` buat detailnya")
-        else:
-            await dbname.edit(f"botname notfound,check `.help botname` for more details")
+        await dbname.edit(f"reset botname to default success")
+    
 
     
 class Helpstring:
