@@ -71,7 +71,7 @@ class language:
         assert isinstance(lang, str)
         self.language = lang
 
-Language = language()
+lang = language()
 
 class Afkstr:
     def __init__(self):
@@ -106,10 +106,10 @@ async def help(event):
     time.sleep(1)
     args = event.pattern_match.group(1).lower()
     if args == "en":
-        Language.change("en")
+        lang.change("en")
         await event.edit(f"set lang to `en` success")
     elif args == "id":
-        Language.change("id")
+        lang.change("id")
         await event.edit(f"ubah bahasa ke `id` berhasil")
     else:
         await event.edit(f"only supported `en` and `id` ")

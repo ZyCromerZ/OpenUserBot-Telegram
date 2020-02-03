@@ -17,7 +17,6 @@ from userbot.events import register
 from userbot.modules.lang import lang
 
 # ================= CONSTANT =================
-global lang
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 

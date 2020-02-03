@@ -209,8 +209,23 @@ LASTMSG = {}
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
-BOT_NAME = os.environ.get("BOT_NAME", "My-Bot")
 SET_LANG = os.environ.get("SET_LANG", "en")
 
 # Telegraph 
 TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", None)
+
+class GetBotName:
+    def __init__(self):
+        self.botname = os.environ.get("BOT_NAME", "My-Bot")
+    
+    def __str__(self):
+        return self.botname
+
+    def change(self, botname):
+        assert isinstance(botname, str)
+        self.botname = botname
+
+    def reset(self):
+        self.botname = os.environ.get("BOT_NAME", "My-Bot")
+
+BOT_NAME = GetBotName()
