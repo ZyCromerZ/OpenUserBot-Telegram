@@ -173,6 +173,11 @@
       "description": "Set the userbot's telegra.ph module. You must set this to make the bot alive",
       "value": "*up to you",
       "required": true
+    },
+    "SET_LANG": {
+      "description": "set userbot lang (en/id)",
+      "value": "en",
+      "required": true
     }
   },
   "addons": [

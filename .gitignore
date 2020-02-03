@@ -9,3 +9,6 @@ userbot/modules/sql_helper/__pycache__/*
 .progress
 .vscode/*
 bin/*
+error.log
+auth_token.txt
+downloads/

@@ -210,6 +210,7 @@ CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
 BOT_NAME = os.environ.get("BOT_NAME", "My-Bot")
+SET_LANG = os.environ.get("SET_LANG", "en")
 
 # Telegraph 
 TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", None)

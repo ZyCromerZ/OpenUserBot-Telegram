@@ -14,6 +14,7 @@ from telethon import version
 
 from userbot import CMD_HELP, ALIVE_NAME, BOT_NAME
 from userbot.events import register
+from userbot.modules.lang import lang
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -37,7 +38,10 @@ async def sysdetails(sysd):
 
         await sysd.edit("`" + result + "`")
     except FileNotFoundError:
-        await sysd.edit("`Install neofetch first !!`")
+        if lang == "id":
+            await sysd.edit("`neofetch ga ada,Install dulu gih!`")
+        else:
+            await sysd.edit("`Install neofetch first !!`")
 
 
 @register(outgoing=True, pattern="^.botver$")
@@ -63,17 +67,29 @@ async def bot_ver(event):
         stdout, stderr = await rev.communicate()
         revout = str(stdout.decode().strip()) \
             + str(stderr.decode().strip())
-
-        await event.edit("`Userbot Version: "
-                         f"{verout}"
-                         "` \n"
-                         "`Revision: "
-                         f"{revout}"
-                         "`")
+        if lang == "id":
+            await event.edit(f"Tentang BOT:\n"
+                            f"Versi Userbot: `{verout}`\n"
+                            f"Revisi: `{revout}`\n"
+                            f"Telethon: ` {version.__version__} ` \n"
+                            f"Python: ` {python_version()} ` \n"
+                            f"")
+        else:
+            await event.edit(f"About BOT:\n"
+                            f"Userbot Version: `{verout}`\n"
+                            f"Revision: `{revout}`\n"
+                            f"Telethon: ` {version.__version__} ` \n"
+                            f"Python: ` {python_version()} ` \n"
+                            f"")
     else:
-        await event.edit(
-            "Shame that you don't have git, You're running 5.0 - 'Extended' anyway"
-        )
+        if lang == "id":
+            await event.edit(
+                "Wew ga support git, lagi jalan di 5.0 - 'Extended'"
+            )
+        else:
+            await event.edit(
+                "Shame that you don't have git, You're running 5.0 - 'Extended' anyway"
+            )
 
 
 @register(outgoing=True, pattern="^.pip(?: |$)(.*)")
@@ -122,15 +138,24 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.on$")
 async def amireallyalive(on):
     """ For .on command, check if the bot is running.  """
-    await on.edit(f"I'm Ready \n\n"
-                  f"`------------------------------------` \n"
-                  f"Telethon: ` {version.__version__} ` \n"
-                  f"Python: ` {python_version()} ` \n"
-                  f"User: ` {DEFAULTUSER} ` \n"
-                  f"Botname: `{BOT_NAME}` \n"
-                  f"`------------------------------------` \n"
-                  f" \n\n"
-                  f"Enjoy . . .")    
+    if lang == "id":
+        await on.edit(f"Dah Siap boss \n\n"
+                    f"`------------------------------------` \n"
+                    f"User: ` {DEFAULTUSER} ` \n"
+                    f"NamaBot: `{BOT_NAME}` \n"
+                    f"Bahasa: `{lang}`\n"
+                    f"`------------------------------------` \n"
+                    f" \n\n"
+                    f"Santuy . . .")
+    else:
+        await on.edit(f"I'm Ready \n\n"
+                    f"`------------------------------------` \n"
+                    f"User: ` {DEFAULTUSER} ` \n"
+                    f"Botname: `{BOT_NAME}` \n"
+                    f"lang: `{lang}`\n"
+                    f"`------------------------------------` \n"
+                    f" \n\n"
+                    f"Enjoy . . .")
 
 
 
@@ -138,12 +163,18 @@ async def amireallyalive(on):
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
     message = username.text
-    output = '.aliveu [new user without brackets] nor can it be empty'
+    if lang == "id":
+        output = '.aliveu [user baru] tidak boleh kosong'
+    else:
+        output = '.aliveu [new user without brackets] nor can it be empty'
     if not (message == '.aliveu' or message[7:8] != ' '):
         newuser = message[8:]
         global DEFAULTUSER
         DEFAULTUSER = newuser
-        output = 'Successfully changed user to ' + newuser + '!'
+        if lang == "id":
+            output = 'berhasil mengubah user ke ' + newuser + '!'
+        else:
+            output = 'Successfully changed user to ' + newuser + '!'
     await username.edit("`" f"{output}" "`")
 
 
@@ -152,22 +183,44 @@ async def amireallyalivereset(ureset):
     """ For .resetalive command, reset the username in the .alive command. """
     global DEFAULTUSER
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-    await ureset.edit("`" "Successfully reset user for alive!" "`")
+    if lang == "id":
+        await ureset.edit("berhasil reset user untuk `alive`!")
+    else:
+        await ureset.edit("Successfully reset user for `alive`!")
 
-CMD_HELP.update(
-    {"sysd": ".sysd\
-    \nUsage: Shows system information using neofetch."})
-CMD_HELP.update({"botver": ".botver\
-    \nUsage: Shows the userbot version."})
-CMD_HELP.update(
-    {"pip": ".pip <module(s)>\
-    \nUsage: Does a search of pip modules(s)."})
-CMD_HELP.update({
-    "on":
-    ".on\
-    \nUsage: Type .on to see wether your bot is working or not.\
-    \n\n.aliveu <text>\
-    \nUsage: Changes the 'user' in alive to the text you want.\
-    \n\n.resetalive\
-    \nUsage: Resets the user to default."
-})
+if lang == "id":
+    CMD_HELP.update(
+        {"sysd": ".sysd\
+        \nGunanya: liat info system pake neofetch."})
+    CMD_HELP.update({"botver": ".botver\
+        \nGunanya: liat userbot version."})
+    CMD_HELP.update(
+        {"pip": ".pip <module(s)>\
+        \nGunanya: buat nyari pip modules(s)."})
+    CMD_HELP.update({
+        "on":
+        ".on\
+        \nGunanya: ketik .on buat liat bot nyala ato mati.\
+        \n\n.aliveu <text>\
+        \nGunanya: buat ganti 'user' di alive ke yg lu mau.\
+        \n\n.resetalive\
+        \nGunanya: Reset  `user` ke default."
+    })
+else:
+    CMD_HELP.update(
+        {"sysd": ".sysd\
+        \nUsage: Shows system information using neofetch."})
+    CMD_HELP.update({"botver": ".botver\
+        \nUsage: Shows the userbot version."})
+    CMD_HELP.update(
+        {"pip": ".pip <module(s)>\
+        \nUsage: Does a search of pip modules(s)."})
+    CMD_HELP.update({
+        "on":
+        ".on\
+        \nUsage: Type .on to see wether your bot is working or not.\
+        \n\n.aliveu <text>\
+        \nUsage: Changes the 'user' in alive to the text you want.\
+        \n\n.resetalive\
+        \nUsage: Resets the user to default."
+    })
