@@ -218,19 +218,15 @@ async def download(set):
         input_length = len(input_str)
         min_input_length = 25
         if input_length >= min_input_length:
-            parent_id = input_str
-            
-            clean_c = re.search(r"https?://drive\.google\.com/drive/u/\d\d/folders/([-\w]{25,})",input_str)
-            if clean_c:
-                parent_id = clean_c.group(1)
 
-            clean_b = re.search(r"https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",input_str)
-            if clean_b:
-                parent_id = clean_b.group(1)
-
-            clean_a = re.search(r"https?://drive\.google\.com/drive/folders/([-\w]{25,})",input_str)
-            if clean_a:
-                parent_id = clean_a.group(1)
+            if re.search(r"https?://drive\.google\.com/drive/u/\d\d/folders/([-\w]{25,})",input_str).group(1):
+                parent_id = re.search(r"https?://drive\.google\.com/drive/u/\d\d/folders/([-\w]{25,})",input_str).group(1)
+            elif re.search(r"https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",input_str).group(1):
+                parent_id = re.search(r"https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})",input_str).group(1)
+            elif re.search(r"https?://drive\.google\.com/drive/folders/([-\w]{25,})",input_str).group(1):
+                parent_id = re.search(r"https?://drive\.google\.com/drive/folders/([-\w]{25,})",input_str).group(1)
+            else:
+                parent_id = input_str
 
             folder_link = f"^https://drive.google.com/drive/folders/" + parent_id
             await set.edit( info_download + f"\nCustom Folder ID set successfully. \
