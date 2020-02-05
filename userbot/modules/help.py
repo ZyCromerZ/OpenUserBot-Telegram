@@ -22,12 +22,18 @@ async def help(event):
         else:
             await event.edit(f"module `{args}` not found,please check .help again!!")
     else:
+        Sorrted = []
+        for a in CMD_HELP:
+            Sorrted.append(str(a))
+
+        Sorrted.sort()
         string = f"List modules:\n"
         realno = 0
         TotalHelp = len(CMD_HELP)
-        for i in CMD_HELP:
+        
+        for b in Sorrted:
             realno += 1
-            string += "- `.help " + str(i) + "`\n"
+            string += "- `.help " + str(b) + "`\n"
             if realno == TotalHelp:
                 string += f"\n\nUsage: just copy paste above "
         await event.edit(string)
