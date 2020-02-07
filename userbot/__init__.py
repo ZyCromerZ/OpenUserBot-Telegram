@@ -237,7 +237,7 @@ class GetLang:
     def __str__(self):
         return self.lang
 
-    def change(self, botname):
+    def change(self, lang):
         assert isinstance(lang, str)
         if lang == "id":
             self.lang = lang
