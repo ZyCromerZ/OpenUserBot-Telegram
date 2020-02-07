@@ -211,8 +211,8 @@ ISAFK = False
 AFKREASON = None
 
 # Telegraph 
-TELEGRAPH_SHORT_NAME = os.enbotname
-botnameviron.get("TELEGRAPH_SHORT_NAME", None)
+TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", None)
+
 
 class GetBotName:
     def __init__(self):
