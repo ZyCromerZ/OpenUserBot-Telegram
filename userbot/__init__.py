@@ -247,4 +247,4 @@ class GetLang:
     def reset(self):
         self.lang = os.environ.get("SET_LANG", "en")
 
-SET_LANG = GetLang()
+GET_LANG = GetLang()
