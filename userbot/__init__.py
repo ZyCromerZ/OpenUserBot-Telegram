@@ -267,3 +267,6 @@ ENABLE_KILLME = True
 CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
+
+# QUOTES API
+QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
