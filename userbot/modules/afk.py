@@ -17,7 +17,7 @@ from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
-                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot, ALIVE_NAME, is_redis_alive)
+                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot, ALIVE_NAME, is_redis_alive, BOT_NAME)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -186,7 +186,9 @@ async def mention_afk(mention):
             if mention.sender_id not in USERS:
                 if AFKREASON:
                     await mention.reply(f"My Master **{DEFAULTUSER}** Is still **afk since** {afk_since}.\
-                            \n**Because My Master is** `{AFKREASON}`")
+                            \n**Because My Master is** `{AFKREASON}`\
+                            \n \
+                            \n By : {BOT_NAME}")
                 else:
                     await mention.reply(f"My Master 👑 {DEFAULTUSER} 👑 is **afk Since** {afk_since}.\nand My Master Has Left a Word for You Only: \n{AFKSK}\n`.` ")
                 USERS.update({mention.sender_id: 1})
@@ -195,7 +197,9 @@ async def mention_afk(mention):
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await mention.reply(f"My Master **{DEFAULTUSER}** Is still **afk since** {afk_since}.\
-                            \n**Because My Master is** `{AFKREASON}`")
+                            \n**Because My Master is** `{AFKREASON}`\
+                            \n \
+                            \n By : {BOT_NAME}")
                     else:
                         await mention.reply(f"My Master 👑 {DEFAULTUSER} 👑 is **afk Since** {afk_since}.\nand My Master Has Left a Word for You Only: \n{AFKSK}\n`.` ")
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -265,7 +269,9 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     await sender.reply(f"My Master **{DEFAULTUSER}** is **afk since** {afk_since}.\
-                        \n**Because My Master is** `{AFKREASON}`")
+                        \n**Because My Master is** `{AFKREASON}`\
+                        \n \
+                        \n By : {BOT_NAME}")
                 else:
                     await sender.reply(f"My Master 👑 {DEFAULTUSER} 👑 is **afk Since** {afk_since}.\nand My Master Has Left a Word for You Only: \n{AFKSK}\n`.` ")
                 USERS.update({sender.sender_id: 1})
@@ -274,7 +280,9 @@ async def afk_on_pm(sender):
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await sender.reply(f"My Master **{DEFAULTUSER}** Is **still afk since** {afk_since}.\
-                            \n**Because My Master is** `{AFKREASON}`")
+                            \n**Because My Master is** `{AFKREASON}`\
+                            \n \
+                            \n By : {BOT_NAME}")
                     else:
                         await sender.reply(f"My Master 👑 {DEFAULTUSER} 👑 is **afk Since** {afk_since}.\nand My Master Has Left a Word for You Only: \n{AFKSK}\n`.` ")
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
