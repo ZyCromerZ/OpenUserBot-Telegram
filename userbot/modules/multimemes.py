@@ -91,7 +91,7 @@ EMOJI_PATTERN = re.compile(
     "]+")
 
 
-@register(outgoing=True, pattern="^.pch(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pch(?: |$)([\s\S]*)")
 async def quotecmd(message):  # noqa: C901
         if QUOTES_API_TOKEN is None:
             await message.edit("Provide QUOTES_API_TOKEN from http://antiddos.systems/login in config.py or heroku vars first!!")
@@ -258,7 +258,7 @@ def get_markdown(reply):
     return markdown
 
 
-@register(outgoing=True, pattern="^.mmf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.mmf(?: |$)([\s\S]*)")
 async def mim(event):
     if event.fwd_from:
         return 
@@ -363,7 +363,7 @@ async def silently_send_message(conv, text):
     return response
 
 
-@register(outgoing=True, pattern="^.q(?: |$)(.*)")
+@register(outgoing=True, pattern="^.q(?: |$)([\s\S]*)")
 async def quotess(qotli):
     if qotli.fwd_from:
         return 
@@ -536,7 +536,7 @@ async def fryerrr(fry):
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
+@register(outgoing=True, pattern="^.waifu(?: |$)([\s\S]*)")
 async def waifu(animu):
     text = animu.pattern_match.group(1)
     if not text:
