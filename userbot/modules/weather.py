@@ -95,7 +95,8 @@ async def get_weather(weather):
     sunrise = result['sys']['sunrise']
     sunset = result['sys']['sunset']
     wind = result['wind']['speed']
-    winddir = result['wind']['deg']
+    if "deg" in result['wind']:
+        winddir = result['wind']['deg']
 
     ctimezone = tz(c_tz[country][0])
     time = datetime.now(ctimezone).strftime("%A, %I:%M %p")
@@ -104,8 +105,10 @@ async def get_weather(weather):
     dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
 
     div = (360 / len(dirs))
-    funmath = int((winddir + (div / 2)) / div)
-    findir = dirs[funmath % len(dirs)]
+    if "deg" in result['wind']:
+        funmath = int((winddir + (div / 2)) / div)
+        findir = dirs[funmath % len(dirs)]
+
     kmph = str(wind * 3.6).split(".")
     mph = str(wind * 2.237).split(".")
 
@@ -120,18 +123,29 @@ async def get_weather(weather):
     def sun(unix):
         xx = datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
         return xx
-
-    await weather.edit(
-        f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
-        +
-        f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
-        +
-        f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Humidity:** `{humidity}%`\n" +
-        f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
-        f"**Sunrise:** `{sun(sunrise)}`\n" +
-        f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
-        f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
+    if "deg" in result['wind']:
+        await weather.edit(
+            f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
+            +
+            f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+            +
+            f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+            + f"**Humidity:** `{humidity}%`\n" +
+            f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
+            f"**Sunrise:** `{sun(sunrise)}`\n" +
+            f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
+            f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
+    else:
+        await weather.edit(
+            f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
+            +
+            f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+            +
+            f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+            + f"**Humidity:** `{humidity}%`\n" +
+            f"**Sunrise:** `{sun(sunrise)}`\n" +
+            f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
+            f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
 
 
 CMD_HELP.update({
