@@ -385,62 +385,61 @@ RUNS_STR = [
 ]
 
 CHASE_STR = [
-    "Where do you think you're going?\n\nBy: {BOT_NAME}",
-    "Huh? what? did they get away?\n\nBy: {BOT_NAME}",
-    "ZZzzZZzz... Huh? what? oh, just them again, nevermind.\n\nBy: {BOT_NAME}",
-    "Get back here!\n\nBy: {BOT_NAME}",
-    "Not so fast...\n\nBy: {BOT_NAME}",
-    "Look out for the wall!\n\nBy: {BOT_NAME}",
-    "Don't leave me alone with them!!\n\nBy: {BOT_NAME}",
-    "You run, you die.\n\nBy: {BOT_NAME}",
-    "Jokes on you, I'm everywhere\n\nBy: {BOT_NAME}",
-    "You're gonna regret that...\n\nBy: {BOT_NAME}",
-    "You could also try /kickme, I hear that's fun.\n\nBy: {BOT_NAME}",
-    "Go bother someone else, no-one here cares.\n\nBy: {BOT_NAME}",
-    "You can run, but you can't hide.\n\nBy: {BOT_NAME}",
-    "Is that all you've got?\n\nBy: {BOT_NAME}",
-    "I'm behind you...\n\nBy: {BOT_NAME}",
-    "You've got company!\n\nBy: {BOT_NAME}",
-    "We can do this the easy way, or the hard way.\n\nBy: {BOT_NAME}",
-    "You just don't get it, do you?\n\nBy: {BOT_NAME}",
-    "Yeah, you better run!\n\nBy: {BOT_NAME}",
-    "Please, remind me how much I care?\n\nBy: {BOT_NAME}",
-    "I'd run faster if I were you.\n\nBy: {BOT_NAME}",
-    "That's definitely the droid we're looking for.\n\nBy: {BOT_NAME}",
-    "May the odds be ever in your favour.\n\nBy: {BOT_NAME}",
-    "Famous last words.\n\nBy: {BOT_NAME}",
-    "And they disappeared forever, never to be seen again.\n\nBy: {BOT_NAME}",
-    "\"Oh, look at me! I'm so cool, I can run from a bot!\" - this person\n\nBy: {BOT_NAME}",
-    "Yeah yeah, just tap /kickme already.\n\nBy: {BOT_NAME}",
-    "Here, take this ring and head to Mordor while you're at it.\n\nBy: {BOT_NAME}",
-    "Legend has it, they're still running...\n\nBy: {BOT_NAME}",
-    "Unlike Harry Potter, your parents can't protect you from me.\n\nBy: {BOT_NAME}",
-    "Fear leads to anger. Anger leads to hate. Hate leads to suffering. If you keep running in fear, you might \n\nBy: {BOT_NAME}",
-    "be the next Vader.\n\nBy: {BOT_NAME}",
-    "Multiple calculations later, I have decided my interest in your shenanigans == exactly 0.\n\nBy: {BOT_NAME}",
-    "Legend has it, they're still running.\n\nBy: {BOT_NAME}",
-    "Keep it up, not sure we want you here anyway.\n\nBy: {BOT_NAME}",
-    "You're a wiza- Oh. Wait. You're not Harry, keep moving.\n\nBy: {BOT_NAME}",
-    "NO RUNNING IN THE HALLWAYS!\n\nBy: {BOT_NAME}",
-    "Hasta la vista, baby.\n\nBy: {BOT_NAME}",
-    "Who let the dogs out?\n\nBy: {BOT_NAME}",
-    "It's funny, because no one cares.\n\nBy: {BOT_NAME}",
-    "Ah, what a waste. I liked that one.\n\nBy: {BOT_NAME}",
-    "Frankly, my dear, I don't give a damn.\n\nBy: {BOT_NAME}",
-    "My milkshake brings all the boys to yard... So run faster!\n\nBy: {BOT_NAME}",
-    "You can't HANDLE the truth!\n\nBy: {BOT_NAME}",
-    "A long time ago, in a galaxy far far away... Someone would've cared about that. Not anymore though.\n\nBy: {BOT_NAME}",
-    "Hey, look at them! They're running from the inevitable banhammer... Cute.\n\nBy: {BOT_NAME}",
-    "Han shot first. So will I.\n\nBy: {BOT_NAME}",
-    "What are you running after, a white rabbit?\n\nBy: {BOT_NAME}",
-    "As The Doctor would say... RUN!\n\nBy: {BOT_NAME}",
+    "Where do you think you're going?",
+    "Huh? what? did they get away?",
+    "ZZzzZZzz... Huh? what? oh, just them again, nevermind.",
+    "`Get back here!`",
+    "`Not so fast...`",
+    "Look out for the wall!",
+    "Don't leave me alone with them!!",
+    "You run, you die.",
+    "`Jokes on you, I'm everywhere`",
+    "You're gonna regret that...",
+    "You could also try /kickme, I hear that's fun.",
+    "`Go bother someone else, no-one here cares.`",
+    "You can run, but you can't hide.",
+    "Is that all you've got?",
+    "I'm behind you...",
+    "You've got company!",
+    "We can do this the easy way, or the hard way.",
+    "You just don't get it, do you?",
+    "Yeah, you better run!",
+    "Please, remind me how much I care?",
+    "I'd run faster if I were you.",
+    "That's definitely the droid we're looking for.",
+    "May the odds be ever in your favour.",
+    "Famous last words.",
+    "And they disappeared forever, never to be seen again.",
+    "\"Oh, look at me! I'm so cool, I can run from a bot!\" - this person",
+    "Yeah yeah, just tap /kickme already.",
+    "Here, take this ring and head to Mordor while you're at it.",
+    "Legend has it, they're still running...",
+    "Unlike Harry Potter, your parents can't protect you from me.",
+    "Fear leads to anger. Anger leads to hate. Hate leads to suffering. If you keep running in fear, you might "
+    "be the next Vader.",
+    "Multiple calculations later, I have decided my interest in your shenanigans is exactly 0.",
+    "Legend has it, they're still running.",
+    "Keep it up, not sure we want you here anyway.",
+    "You're a wiza- Oh. Wait. You're not Harry, keep moving.",
+    "NO RUNNING IN THE HALLWAYS!",
+    "Hasta la vista, baby.",
+    "Who let the dogs out?",
+    "It's funny, because no one cares.",
+    "Ah, what a waste. I liked that one.",
+    "Frankly, my dear, I don't give a damn.",
+    "My milkshake brings all the boys to yard... So run faster!",
+    "You can't HANDLE the truth!",
+    "A long time ago, in a galaxy far far away... Someone would've cared about that. Not anymore though.",
+    "Hey, look at them! They're running from the inevitable banhammer... Cute.",
+    "Han shot first. So will I.",
+    "What are you running after, a white rabbit?",
+    "As The Doctor would say... RUN!",
 ]
 
 HELLOSTR = [
     "Hi !",
     "‘Ello, gov'nor!",
     "What’s crackin’?",
-    "‘Sup, homeslice?",
     "Howdy, howdy ,howdy!",
     "Hello, who's there, I'm talking.",
     "You know who this is.",
@@ -448,14 +447,29 @@ HELLOSTR = [
     "Whaddup.",
     "Greetings and salutations!",
     "Hello, sunshine!",
-    "Hey, howdy, hi!",
+    "`Hey, howdy, hi!`",
     "What’s kickin’, little chicken?",
     "Peek-a-boo!",
     "Howdy-doody!",
-    "Hey there, freshman!",
-    "I come in peace!",
+    "`Hey there, freshman!`",
+    "`I come in peace!`",
+    "`I come for peace!`",
     "Ahoy, matey!",
-    "Hiya!",
+    "`Hi !`",
+]
+
+PROSTR = [
+    "`You is pro user.`",
+     "`Pros here -_- Time to Leave`",
+     "`Pros everywhere`",
+     "`Pro Pro Pro ; What a tragedy`",
+]
+
+NUBSTR = [
+    "`Only few here were Pro and then you join the Party`",
+    "`Only few here were Pro and then you join the Party`",
+    "`Only few here were Pro and then you join the Party`",
+    "`Only few here were Pro and then you join the Party`",
 ]
 
 SHGS = [
@@ -518,41 +532,36 @@ CRI = [
 ]
 
 SLAP_TEMPLATES = [
-    "{hits} {victim} with a {item}.\n\nBy: {BOT_NAME}",
-    "{hits} {victim} in the face with a {item}.\n\nBy: {BOT_NAME}",
-    "{hits} {victim} around a bit with a {item}.\n\nBy: {BOT_NAME}",
-    "{throws} a {item} at {victim}.\n\nBy: {BOT_NAME}",
-    "grabs a {item} and {throws} it at {victim}'s face.\n\nBy: {BOT_NAME}",
-    "{hits} a {item} at {victim}.\n\nBy: {BOT_NAME}",
-    "{throws} a few {item} at {victim}.\n\nBy: {BOT_NAME}",
-    "grabs a {item} and {throws} it in {victim}'s face.\n\nBy: {BOT_NAME}",
-    "launches a {item} in {victim}'s general direction.\n\nBy: {BOT_NAME}",
-    "sits on {victim}'s face while slamming a {item} {where}.\n\nBy: {BOT_NAME}",
-    "starts slapping {victim} silly with a {item}.\n\nBy: {BOT_NAME}",
-    "pins {victim} down and repeatedly {hits} them with a {item}.\n\nBy: {BOT_NAME}",
-    "grabs up a {item} and {hits} {victim} with it.\n\nBy: {BOT_NAME}",
-    "starts slapping {victim} silly with a {item}.\n\nBy: {BOT_NAME}",
-    "holds {victim} down and repeatedly {hits} them with a {item}.\n\nBy: {BOT_NAME}",
-    "prods {victim} with a {item}.\n\nBy: {BOT_NAME}",
-    "picks up a {item} and {hits} {victim} with it.\n\nBy: {BOT_NAME}",
-    "ties {victim} to a chair and {throws} a {item} at them.\n\nBy: {BOT_NAME}",
-    "{hits} {victim} {where} with a {item}.\n\nBy: {BOT_NAME}",
-    "ties {victim} to a pole and whips them {where} with a {item}\n\nBy: {BOT_NAME}."
-    "gave a friendly push to help {victim} learn to swim in lava.\n\nBy: {BOT_NAME}",
-    "sent {victim} to /dev/null.\n\nBy: {BOT_NAME}",
-    "sent {victim} down the memory hole.\n\nBy: {BOT_NAME}",
-    "beheaded {victim}.\n\nBy: {BOT_NAME}", 
-    "threw {victim} off a building.\n\nBy: {BOT_NAME}",
-    "replaced all of {victim}'s music with Nickelback.\n\nBy: {BOT_NAME}",
-    "spammed {victim}'s email.\n\nBy: {BOT_NAME}",
-    "made {victim} a knuckle sandwich.\n\nBy: {BOT_NAME}",
-    "slapped {victim} with pure nothing.\n\nBy: {BOT_NAME}",
-    "hit {victim} with a small, interstellar spaceship.\n\nBy: {BOT_NAME}",
-    "quickscoped {victim}.\n\nBy: {BOT_NAME}",
-    "put {victim} in check-mate.\n\nBy: {BOT_NAME}",
-    "RSA-encrypted {victim} and deleted the private key.\n\nBy: {BOT_NAME}",
-    "put {victim} in the friendzone.\n\nBy: {BOT_NAME}",
-    "slaps {victim} with a DMCA takedown request!\n\nBy: {BOT_NAME}"
+    "{hits} {victim} with a {item}.",
+    "{hits} {victim} in the face with a {item}.",
+    "{hits} {victim} around a bit with a {item}.",
+    "`{throws} a {item} at {victim}.`",
+    "grabs a {item} and {throws} it at {victim}'s face.",
+    "{hits} a {item} at {victim}.", "{throws} a few {item} at {victim}.",
+    "grabs a {item} and {throws} it in {victim}'s face.",
+    "launches a {item} in {victim}'s general direction.",
+    "sits on {victim}'s face while slamming a {item} {where}.",
+    "starts slapping {victim} silly with a {item}.",
+    "pins {victim} down and repeatedly {hits} them with a {item}.",
+    "grabs up a {item} and {hits} {victim} with it.",
+    "starts slapping {victim} silly with a {item}.",
+    "holds {victim} down and repeatedly {hits} them with a {item}.",
+    "prods {victim} with a {item}.",
+    "picks up a {item} and {hits} {victim} with it.",
+    "`ties {victim} to a chair and {throws} a {item} at them.`",
+    "{hits} {victim} {where} with a {item}.",
+    "ties {victim} to a pole and whips them {where} with a {item}."
+    "gave a friendly push to help {victim} learn to swim in lava.",
+    "sent {victim} to /dev/null.", "sent {victim} down the memory hole.",
+    "beheaded {victim}.", "threw {victim} off a building.",
+    "replaced all of {victim}'s music with Nickelback.",
+    "spammed {victim}'s email.", "made {victim} a knuckle sandwich.",
+    "slapped {victim} with pure nothing.",
+    "hit {victim} with a small, interstellar spaceship.",
+    "quickscoped {victim}.", "put {victim} in check-mate.",
+    "RSA-encrypted {victim} and deleted the private key.",
+    "put {victim} in the friendzone.",
+    "slaps {victim} with a DMCA takedown request!"
 ]
 
 ITEMS = [
@@ -880,6 +889,18 @@ async def zal(zgfy):
 async def hoi(hello):
     """ Greet everyone! """
     await hello.edit(choice(HELLOSTR))
+
+
+@register(outgoing=True, pattern="^.pro$")
+async def pero(proo):
+    """ Greet everyone! """
+    await proo.edit(choice(PROSTR))
+
+
+@register(outgoing=True, pattern="^.nub$")
+async def noob(nubdo):
+    """ Greet everyone! """
+    await nubdo.edit(choice(NUBSTR))
 
 
 @register(outgoing=True, pattern="^.owo(?: |$)(.*)")

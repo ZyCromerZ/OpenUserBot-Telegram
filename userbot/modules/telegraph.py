@@ -1,3 +1,10 @@
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
+# Port From UniBorg to UserBot by @afdulfauzan
+
 from telethon import events
 import os
 from PIL import Image
@@ -11,10 +18,9 @@ r = telegraph.create_account(short_name=TELEGRAPH_SHORT_NAME)
 auth_url = r["auth_url"]
 
 
-@register(outgoing=True, pattern="^.telegraph (media|text)$")
+@register(outgoing=True, pattern="^.tg (media|text)$")
 async def telegraphs(graph):
     """ For .telegraph command, upload media & text to telegraph site. """
-    await graph.edit("`Processing...`") 
     if not graph.text[0].isalpha() and graph.text[0] not in ("/", "#", "@", "!"):
         if graph.fwd_from:
             return
@@ -44,7 +50,7 @@ async def telegraphs(graph):
                     end = datetime.now()
                     ms_two = (end - start).seconds
                     os.remove(downloaded_file_name)
-                    await graph.edit("Successfully Uploaded to [telegra.ph](https://telegra.ph{}).".format(media_urls[0], (ms + ms_two)), link_preview=True)
+                    await graph.edit("Uploaded to https://telegra.ph{} in {} seconds.".format(media_urls[0], (ms + ms_two)), link_preview=True)
             elif input_str == "text":
                 user_object = await bot.get_entity(r_message.from_id)
                 title_of_page = user_object.first_name # + " " + user_object.last_name
@@ -70,9 +76,9 @@ async def telegraphs(graph):
                 )
                 end = datetime.now()
                 ms = (end - start).seconds
-                await graph.edit("Successfully uploaded to [telegra.ph](https://telegra.ph/{}).".format(response["path"], ms), link_preview=True)
+                await graph.edit("Pasted to https://telegra.ph/{} in {} seconds.".format(response["path"], ms), link_preview=True)
         else:
-            await graph.edit("`Reply to a message to get a permanent telegra.ph link.`")
+            await graph.edit("Reply to a message to get a permanent telegra.ph link. (Inspired by @ControllerBot)")
 
 
 def resize_image(image):
@@ -81,6 +87,9 @@ def resize_image(image):
 
 
 CMD_HELP.update({
-    'telegraph': '.telegraph media | text\
-        \nUsage: Upload text & media on Telegraph.'
+    "telegraph": ".tg media as reply to a media \
+        \n & .tg text as reply to a large text \
+        \nUsage: Upload text & media on Telegraph.\
+        \nNotice: you are required to set TELEGRAPH_SHORT_NAME in Heroku vars so that your bot remains alive \
+        \nor else your bot will die."
 })
