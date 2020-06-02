@@ -30,7 +30,7 @@ async def usit(e):
 async def var(m):
     await m.edit(
         f"Here's a list of VARS for {DEFAULTUSER} on **OpenUserBot**:\n"
-        "\n[HEROKU VARS](https://raw.githubusercontent.com/mkaraniya/OpenUserBot/sql-extended/bin/vars%20for%20oub.txt)")
+        "\n[HEROKU VARS](https://raw.githubusercontent.com/ZyCromerZ/OpenUserBot-Telegram/master/bin/vars%20for%20oub.txt)")
     
     
 CMD_HELP.update({
