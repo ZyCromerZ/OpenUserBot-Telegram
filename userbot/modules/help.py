@@ -21,8 +21,17 @@ async def help(event):
     else:
         await event.edit("Please specify which module do you want help for !!\
             \nUsage: .help <module name>")
+        Sorrted = []
+        for a in CMD_HELP:
+            Sorrted.append(str(a))
+
+        Sorrted.sort()
         string = ""
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`\n"
+        realno = 0
+        TotalHelp = len(CMD_HELP)
+        for i in Sorrted:
+            realno += 1
+            string += "- `" + str(i) + "`\n"
+            if realno == TotalHelp:
+                string += f"\n\nUsage: just copy paste above "
         await event.reply(string)
