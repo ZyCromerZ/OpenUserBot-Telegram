@@ -5,7 +5,7 @@
 import time
 from userbot import CMD_HELP, GET_LANG
 from userbot.events import register
-from userbot.modules.afk import AFKSTR, HELP_STR as AFK_HELP
+from userbot.modules.afk import HELP_STR as AFK_HELP
 
 # ================= Setup Class Start =================
 class Helpstring:
@@ -35,7 +35,6 @@ async def help(event):
     else:
         await event.edit(f"only supported `en` and `id` ")
     HELP_STR
-    AFKSTR
     AFK_HELP
 
 CMD_HELP.update({"setlang": str(Helpstring())})

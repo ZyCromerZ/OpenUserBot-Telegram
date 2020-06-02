@@ -17,7 +17,7 @@ from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
-                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot, ALIVE_NAME, is_redis_alive, BOT_NAME)
+                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot, ALIVE_NAME, is_redis_alive, BOT_NAME, GET_LANG)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -95,6 +95,39 @@ async def set_afk(afk_e):
     afk_time = datetime.now()  # pylint:disable=E0602
     raise StopPropagation
 
+@register(outgoing=True, pattern=r"^[bB][rR][bB](?: |$)([\s\S]*)", disable_errors=True)
+async def set_afk(brb_e):
+    """ For .afk command, allows you to inform people that you are afk when they message you """
+    message = brb_e.text
+    string = brb_e.pattern_match.group(1)
+    global ISAFK
+    global AFKREASON
+    global USER_AFK  # pylint:disable=E0602
+    global afk_time  # pylint:disable=E0602
+    global afk_start
+    global afk_end
+    user = await bot.get_me()
+    global reason
+    USER_AFK = {}
+    afk_time = None
+    afk_end = {}
+    start_1 = datetime.now()
+    afk_start = start_1.replace(microsecond=0)
+    if string:
+        AFKREASON = string
+        await brb_e.edit(f"**Going AFK!**\
+        \nReason: `{string}`")
+    else:
+        await brb_e.edit("**Going AFK!**")
+    if user.last_name:
+        await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
+    else:
+        await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
+    if BOTLOG:
+        await brb_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
+    ISAFK = True
+    afk_time = datetime.now()  # pylint:disable=E0602
+    raise StopPropagation
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
@@ -292,11 +325,23 @@ async def afk_on_pm(sender):
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                 COUNT_MSG = COUNT_MSG + 1
 
+class Helpstring:
+    def __init__(self):
+        self.string = None;
+    def __str__(self):
+        if str(GET_LANG) == "id":
+            return ".afk [alasan opsional]\nUsage: ubah status mu menjadi afk.\nBalas semua orang dengan yg PM/tag kamu \
+            \nkamu memberitahu mereka kalu kamu sedang afk(alasan).\n\nMematikan afk status dengan mengetik apapun,dimanapun \
+            \n.brb \
+            \nUsage: sama seperti afk"
+        else:
+            return ".afk [Optional Reason]\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
+            \nyou telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere. \
+            \n.brb \
+            \nUsage: same as afk"
+
+HELP_STR = Helpstring()
 
 CMD_HELP.update({
-    "afk":
-    "`.afk` [Optional Reason]\
-\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
-you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
-"
+    "afk": str(Helpstring())
 })
