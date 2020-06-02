@@ -14,7 +14,7 @@ from userbot.events import register
 from userbot import CMD_HELP, LOGS, GENIUS
 
 
-@register(outgoing=True, pattern="^.lyrics(?: |$)(.*)")
+@register(outgoing=True, pattern="^.lyrics(?: |$)([\s\S]*)")
 async def lyrics(lyric):
     if r"-" in lyric.text:
         pass

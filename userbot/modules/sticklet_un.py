@@ -15,7 +15,7 @@ from userbot.events import register
 from userbot import CMD_HELP, bot
 
 
-@register(outgoing=True, pattern="^.un(?: |$)(.*)")
+@register(outgoing=True, pattern="^.un(?: |$)([\s\S]*)")
 async def sticklet(event):
     R = random.randint(0,256)
     G = random.randint(0,256)

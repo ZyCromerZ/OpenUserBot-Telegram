@@ -265,7 +265,7 @@ async def gdrive(request):
 
 
 
-@register(pattern=r".download(?: |$)(.*)", outgoing=True)
+@register(pattern=r".download(?: |$)([\s\S]*)", outgoing=True)
 async def download(target_file):
     """ For .download command, download files to the userbot's server. """
     await target_file.edit("Processing ...")

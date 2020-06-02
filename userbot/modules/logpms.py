@@ -37,7 +37,7 @@ async def monito_p_m_s(event):
                 LOGS.warn(str(e))
 
 #@borg.on(admin_cmd(pattern="nolog ?(.*)"))
-@register(pattern="^.nolog(?: |$)(.*)")
+@register(pattern="^.nolog(?: |$)([\s\S]*)")
 async def approve_p_m(event):
     if event.fwd_from:
         return
@@ -52,7 +52,7 @@ async def approve_p_m(event):
                 await event.delete()
 
                 
-@register(pattern="^.log(?: |$)(.*)")
+@register(pattern="^.log(?: |$)([\s\S]*)")
 async def approve_p_m(event):
     if event.fwd_from:
         return

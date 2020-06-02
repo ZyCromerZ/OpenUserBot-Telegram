@@ -17,7 +17,7 @@ from telethon.utils import get_input_location
 from userbot import CMD_HELP
 from userbot.events import register
 
-@register(pattern=".chatinfo(?: |$)(.*)", outgoing=True)
+@register(pattern=".chatinfo(?: |$)([\s\S]*)", outgoing=True)
 async def info(event):
     await event.edit("`Analysing the chat...`")
     chat = await get_chatinfo(event)
@@ -197,7 +197,7 @@ async def fetch_info(chat, event):
         caption += f"Description: \n<code>{description}</code>\n"
     return caption
 
-@register(outgoing=True, pattern="^.invite(?: |$)(.*)")
+@register(outgoing=True, pattern="^.invite(?: |$)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
         return

@@ -84,7 +84,7 @@ async def bot_ver(event):
                 "Shame that you don't have Git, you're running v1.0 anyway!")
 
 
-@register(outgoing=True, pattern="^.pip(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pip(?: |$)([\s\S]*)")
 async def pipcheck(pip):
     """ For .pip command, do a pip search. """
     if not pip.text[0].isalpha() and pip.text[0] not in ("/", "#", "@", "!"):

@@ -61,7 +61,7 @@ afk_time = None
 afk_start = {}
 
 # =================================================================
-@register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^.afk(?: |$)([\s\S]*)", disable_errors=True)
 async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
@@ -95,6 +95,39 @@ async def set_afk(afk_e):
     afk_time = datetime.now()  # pylint:disable=E0602
     raise StopPropagation
 
+@register(outgoing=True, pattern="^[bB][rR][bB](?: |$)([\s\S]*)", disable_errors=True)
+async def set_afk(brb_e):
+    """ For brb command, allows you to inform people that you are afk when they message you """
+    message = brb_e.text
+    string = brb_e.pattern_match.group(1)
+    global ISAFK
+    global AFKREASON
+    global USER_AFK  # pylint:disable=E0602
+    global afk_time  # pylint:disable=E0602
+    global afk_start
+    global afk_end
+    user = await bot.get_me()
+    global reason
+    USER_AFK = {}
+    afk_time = None
+    afk_end = {}
+    start_1 = datetime.now()
+    afk_start = start_1.replace(microsecond=0)
+    if string:
+        AFKREASON = string
+        await brb_e.edit(f"**Going AFK!**\
+        \nReason: `{string}`")
+    else:
+        await brb_e.edit("**Going AFK!**")
+    if user.last_name:
+        await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
+    else:
+        await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
+    if BOTLOG:
+        await brb_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
+    ISAFK = True
+    afk_time = datetime.now()  # pylint:disable=E0602
+    raise StopPropagation
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):

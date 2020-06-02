@@ -21,7 +21,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ================= CONSTANT =================
 
 #@register(outgoing=True, pattern=r"^.(set|get|del) var(?: |$)(.*)(?: |$)")
-@register(outgoing=True, pattern=r"^.(set|get|del) var(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^.(set|get|del) var(?: |$)([\s\S]*)")
 async def variable(var):
     """
         Manage most of ConfigVars setting, set new var, get current var,
@@ -94,7 +94,7 @@ async def variable(var):
 
 
 #@register(outgoing=True, pattern=r"^.usage(?: |$)")
-@register(outgoing=True, pattern=r"^.usage(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^.usage(?: |$)([\s\S]*)")
 async def dyno_usage(dyno):
     """
         Get your account Dyno Usage

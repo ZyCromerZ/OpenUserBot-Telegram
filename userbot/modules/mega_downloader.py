@@ -50,7 +50,7 @@ async def subprocess_run(cmd, megadl):
     return stdout, stderr
 
 
-@register(outgoing=True, pattern=r"^.mega(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^.mega(?: |$)([\s\S]*)")
 async def mega_downloader(megadl):
     await megadl.edit("`Processing...`")
     msg_link = await megadl.get_reply_message()

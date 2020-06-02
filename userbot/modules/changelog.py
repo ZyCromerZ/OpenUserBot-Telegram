@@ -33,7 +33,7 @@ async def is_off_br(br):
     return
 
 
-@register(outgoing=True, pattern="^.chl(?: |$)(.*)")
+@register(outgoing=True, pattern="^.chl(?: |$)([\s\S]*)")
 async def chtream(ch):
     "For .update command, check if the bot is up to date, update if specified"
     await ch.edit("`Checking for updates, please wait....`")

@@ -9,7 +9,7 @@ from sys import executable
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, TERM_ALIAS
 from userbot.events import register
  
-@register(outgoing=True, pattern="^.w3m(?: |$)(.*)")
+@register(outgoing=True, pattern="^.w3m(?: |$)([\s\S]*)")
 async def terminal_runner(w3m):
     """ For .w3m command, browser the internet with w3m on your server. """
     curruser = TERM_ALIAS

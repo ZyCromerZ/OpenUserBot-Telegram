@@ -31,7 +31,7 @@ async def useridgetter(target):
             name, user_id))
 
 
-@register(outgoing=True, pattern="^.link(?: |$)(.*)")
+@register(outgoing=True, pattern="^.link(?: |$)([\s\S]*)")
 async def permalink(mention):
     """ For .link command, generates a link to the user's PM with a custom text. """
     user, custom = await get_user_from_event(mention)

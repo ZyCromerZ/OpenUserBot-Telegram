@@ -675,7 +675,7 @@ async def coin(event):
             await event.edit("The coin landed on: **Tails**.")
 
 
-@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
+@register(pattern="^.slap(?: |$)([\s\S]*)", outgoing=True)
 async def who(event):
     """ slaps a user, or get slapped if not a reply. """
     replied_user = await get_user_from_event(event)
@@ -767,7 +767,7 @@ async def insult(e):
     await e.edit(choice(INSULT_STRINGS))
 
 
-@register(outgoing=True, pattern="^.cp(?: |$)(.*)")
+@register(outgoing=True, pattern="^.cp(?: |$)([\s\S]*)")
 async def copypasta(cp_e):
     """ Copypasta the famous meme """
     textx = await cp_e.get_reply_message()
@@ -801,7 +801,7 @@ async def copypasta(cp_e):
     await cp_e.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.vapor(?: |$)(.*)")
+@register(outgoing=True, pattern="^.vapor(?: |$)([\s\S]*)")
 async def vapor(vpr):
     """ Vaporize everything! """
     reply_text = list()
@@ -826,7 +826,7 @@ async def vapor(vpr):
     await vpr.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.str(?: |$)(.*)")
+@register(outgoing=True, pattern="^.str(?: |$)([\s\S]*)")
 async def stretch(stret):
     """ Stretch it."""
     textx = await stret.get_reply_message()
@@ -846,7 +846,7 @@ async def stretch(stret):
     await stret.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.zal(?: |$)(.*)")
+@register(outgoing=True, pattern="^.zal(?: |$)([\s\S]*)")
 async def zal(zgfy):
     """ Invoke the feeling of chaos. """
     reply_text = list()
@@ -903,7 +903,7 @@ async def noob(nubdo):
     await nubdo.edit(choice(NUBSTR))
 
 
-@register(outgoing=True, pattern="^.owo(?: |$)(.*)")
+@register(outgoing=True, pattern="^.owo(?: |$)([\s\S]*)")
 async def faces(owo):
     """ UwU """
     textx = await owo.get_reply_message()
@@ -1012,7 +1012,7 @@ async def clock(event):
         return
 
 
-@register(outgoing=True, pattern="^.mock(?: |$)(.*)")
+@register(outgoing=True, pattern="^.mock(?: |$)([\s\S]*)")
 async def spongemocktext(mock):
     """ Do it and find the real fun. """
     reply_text = list()
@@ -1036,7 +1036,7 @@ async def spongemocktext(mock):
     await mock.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.clap(?: |$)(.*)")
+@register(outgoing=True, pattern="^.clap(?: |$)([\s\S]*)")
 async def claptext(memereview):
     """ Praise people! """
     textx = await memereview.get_reply_message()
@@ -1090,7 +1090,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
     \n[{query}]({r.json()['shorturl']})")
 
 
-@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
+@register(pattern=r".scam(?: |$)([\s\S]*)", outgoing=True)
 async def scam(event):
     """ Just a small command to fake chat actions for fun !! """
     options = [
@@ -1124,7 +1124,7 @@ async def scam(event):
         return
 
 
-@register(pattern=r".type(?: |$)(.*)", outgoing=True)
+@register(pattern=r".type(?: |$)([\s\S]*)", outgoing=True)
 async def typewriter(typew):
     """ Just a small command to make your keyboard become a typewriter! """
     textx = await typew.get_reply_message()
