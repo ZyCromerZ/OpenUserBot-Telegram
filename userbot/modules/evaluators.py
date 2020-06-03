@@ -93,7 +93,7 @@ execute. Use .help exec for an example.```")
             "\n" + clines[3] + "..."
 
     command = "".join(f"\n {l}" for l in code.split("\n.strip()"))
-    process = await asyncio.create_subprocess_shell(
+    process = await asyncio.create_subprocess_exec(
         executable,
         '-c',
         command.strip(),

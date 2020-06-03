@@ -30,7 +30,7 @@ async def parseqr(qr_e):
         "curl", "-X", "POST", "-F", "f=@" + downloaded_file_name + "",
         "https://zxing.org/w/decode"
     ]
-    process = await asyncio.create_subprocess_shell(
+    process = await asyncio.create_subprocess_exec(
         *command_to_exec,
         # stdout must a pipe to be accessible as process.stdout
         stdout=asyncio.subprocess.PIPE,
