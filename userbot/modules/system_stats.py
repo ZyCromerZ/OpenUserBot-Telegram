@@ -6,7 +6,7 @@
 # thanks to penn5 for bug fixing
 """ Userbot module for getting information about the server. """
 
-from asyncio import create_subprocess_exec as asyncrunapp
+from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from platform import python_version, uname
 from shutil import which

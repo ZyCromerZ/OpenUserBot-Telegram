@@ -33,7 +33,7 @@ async def terminal_runner(w3m):
         await w3m.edit("`That's a dangerous operation! Not Permitted!`")
         return
  
-    process = await asyncio.create_subprocess_exec(
+    process = await asyncio.create_subprocess_shell(
         "w3m",
         command,
         stdout=asyncio.subprocess.PIPE,
