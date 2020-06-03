@@ -28,10 +28,13 @@ async def help(event):
         Sorrted.sort()
         string = ""
         realno = 0
-        TotalHelp = len(CMD_HELP)
+        TotalHelp = 50
         for i in Sorrted:
             realno += 1
-            string += "- `" + str(i) + "`\n"
+            string += "- `.help " + str(i) + "`\n"
             if realno == TotalHelp:
-                string += f"\n\nUsage: just copy paste above "
+                await event.reply(string)
+                realno = 1
+                string = ""
+        string += f"\n**Usage: just copy paste above :V **"
         await event.reply(string)
