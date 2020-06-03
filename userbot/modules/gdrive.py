@@ -440,7 +440,7 @@ async def gdrive_search(http, search_query):
         msg = f"**Google Drive Query**:\n`{search_query}`\n\n**Results**\n\n{res}"
     else:
         msg = f"**Google Drive Query**:\n\n**Results**\n\n{res}"
-        return msg
+    return msg
 
 
 CMD_HELP.update({
