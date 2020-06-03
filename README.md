@@ -18,3 +18,7 @@
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
 <p align="center"><a href="https://github.com/ZyCromerZ/OpenUserBot-Telegram/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
+
+<h2 align="center">Updates and Support</h2>
+<p align="center">&nbsp;</p>
+<h2 align="center">original repo from <a href="https://github.com/mkaraniya/OpenUserBot">Here</a></h2>
