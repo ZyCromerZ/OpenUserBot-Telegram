@@ -614,6 +614,27 @@ async def get_admin(show):
         mentions += " " + str(err) + "\n"
     await show.edit(mentions, parse_mode="html")
 
+@register(outgoing=True, pattern="^.adms$")
+async def get_admins(show):
+    """ For .admins command, list all of the admins of the chat. """
+    message = show.text
+    await message.delete()
+    info = await show.client.get_entity(show.chat_id)
+    title = info.title if info.title else "this chat"
+    mentions = f'<b>Admins in {title}:</b> \n'
+    try:
+        async for user in show.client.iter_participants(
+                show.chat_id, filter=ChannelParticipantsAdmins):
+            if not user.deleted:
+                link = f"<a href=\"tg://user?id={user.id}\">{user.first_name}</a>"
+                userid = f"<code>{user.id}</code>"
+                mentions += f"\n{link} {userid}"
+            else:
+                mentions += f"\nDeleted Account <code>{user.id}</code>"
+    except ChatAdminRequiredError as err:
+        mentions += " " + str(err) + "\n"
+    await show.client.send_message(BOTLOG_CHATID, mentions,parse_mode="html")
+
 
 @register(outgoing=True, pattern="^.pin(?: |$)([\s\S]*)")
 async def pin(msg):
@@ -942,6 +963,43 @@ async def get_bots(show):
         )
         remove("botlist.txt")
 
+@register(outgoing=True, pattern="^.bts$", groups_only=True)
+async def get_botss(show):
+    """ For .bots command, list all of the bots of the chat. """
+    message = show.text
+    await message.delete()
+    info = await show.client.get_entity(show.chat_id)
+    title = info.title if info.title else "this chat"
+    mentions = f'<b>Bots in {title}:</b>\n'
+    try:
+       # if isinstance(message.to_id, PeerChat):
+        #    await show.edit("`I heard that only Supergroups can have bots.`")
+         #   return
+       # else:
+            async for user in show.client.iter_participants(
+                    show.chat_id, filter=ChannelParticipantsBots):
+                if not user.deleted:
+                    link = f"<a href=\"tg://user?id={user.id}\">{user.first_name}</a>"
+                    userid = f"<code>{user.id}</code>"
+                    mentions += f"\n{link} {userid}"
+                else:
+                    mentions += f"\nDeleted Bot <code>{user.id}</code>"
+    except ChatAdminRequiredError as err:
+        mentions += " " + str(err) + "\n"
+    try:
+        await show.client.send_message(BOTLOG_CHATID, mentions,parse_mode="html")
+    except MessageTooLongError:
+        file = open("botlist.txt", "w+")
+        file.write(mentions)
+        file.close()
+        await show.client.send_file(
+            BOTLOG_CHATID,
+            "botlist.txt",
+            caption='Bots in {}'.format(title),
+            reply_to=show.id,
+        )
+        remove("botlist.txt")
+
   
 
 CMD_HELP.update({
@@ -966,8 +1024,12 @@ CMD_HELP.update({
 \nUsage: Searches for deleted accounts in a group. Use .zombies clean to remove deleted accounts from the group.\
 \n\n.admins\
 \nUsage: Retrieves a list of admins in the chat.\
+\n\n.adms\
+\nUsage: Retrieves a list of admins in the chat and send info to ur bot logs \
 \n\n.bots\
 \nUsage: Retrieves a list of bots in the chat.\
+\n\n.bts\
+\nUsage: Retrieves a list of bots in the chat and send info to ur bot logs \
 \n\n.pin <reply/tag>\
 \nUsage: pins the replied/tagged message on the top the chat silently.\
 \n\n.cpin <reply/tag>\
