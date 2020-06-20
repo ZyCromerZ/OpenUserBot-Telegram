@@ -5,7 +5,8 @@
 #
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
-
+import wget
+import os
 from datetime import datetime
 
 from speedtest import Speedtest
@@ -20,37 +21,52 @@ async def speedtst(spd):
     await spd.edit("`Running speed test . . .`")
     test = Speedtest()
 
+    await spd.edit("`get best server to test . . .`")
     test.get_best_server()
+    await spd.edit("`downloading speed test . . .`")
     test.download()
+    await spd.edit("`uploading speed test . . .`")
     test.upload()
     test.results.share()
     result = test.results.dict()
+    await spd.edit("`done,please wait a moment . . .`")
+    getPathImg = wget.download(result['share'])
+    result=f"""Started at `{result['timestamp']}`
+Client :
+    ISP      : `{result['client']['isp']}`
+    Country  : `{result['client']['country']}`
 
-    await spd.edit("`"
-                   "Started at "
-                   f"{result['timestamp']} \n\n"
-                   "Download "
-                   f"{speed_convert(result['download'])} \n"
-                   "Upload "
-                   f"{speed_convert(result['upload'])} \n"
-                   "Ping "
-                   f"{result['ping']} \n"
-                   "ISP "
-                   f"{result['client']['isp']}"
-                   "`")
+Server :
+    Name     : `{result['server']['name']}`
+    country  : `{result['server']['country']}` , `{result['server']['cc']}`
+    Latency  : `{result['server']['latency']}`
+
+Info :
+    Ping     : `{result['ping']}`
+    Sent     : `{speed_convert(result['bytes_sent'])}`
+    Received : `{speed_convert(result['bytes_received'])}`
+    Download : `{speed_convert(result['download'] / 8) }/s`
+    Upload   : `{speed_convert(result['upload'] / 8) }/s`"""
+    await spd.delete()
+    await spd.client.send_file(spd.chat.id,
+                             getPathImg,
+                             caption=result)
+    os.remove(getPathImg)
 
 
-def speed_convert(size):
+def speed_convert(ukuran: float) -> str:
     """
     Hi human, you can't read bytes?
     """
-    power = 2**10
-    zero = 0
-    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
-    while size > power:
-        size /= power
-        zero += 1
-    return f"{round(size, 2)} {units[zero]}"
+    if not ukuran:
+        return ""
+    totals_isi = {0: '', 1: 'Kb', 2: 'Mb', 3: 'Gb', 4: 'Tb'}
+    totals = 1024
+    no = 0
+    while ukuran > totals:
+        ukuran /= totals
+        no += 1
+    return "{:.2f} {}B".format(ukuran, totals_isi[no])
 
 
 @register(outgoing=True, pattern="^.dc$")
