@@ -32,6 +32,7 @@ from telethon.tl.types import DocumentAttributeVideo, MessageMediaPhoto
 from userbot import GDRIVE_FOLDER_ID as GDRIVE_FOLDER
 from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+from userbot.modules.www import old_speed_convert
 
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./")
 
@@ -53,8 +54,8 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
             round(percentage, 2))
         tmp = progress_str + \
             "{0} of {1}\nETA: {2}".format(
-                humanbytes(current),
-                humanbytes(total),
+                old_speed_convert(current),
+                old_speed_convert(total),
                 time_formatter(estimated_total_time)
             )
         if file_name:
@@ -62,23 +63,6 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
                 type_of_ps, file_name, tmp))
         else:
             await event.edit("{}\n{}".format(type_of_ps, tmp))
-
-
-def humanbytes(size):
-    """Input size in bytes,
-    outputs in a human readable format"""
-    # https://stackoverflow.com/a/49361727/4723940
-    if not size:
-        return ""
-    # 2 ** 10 = 1024
-    power = 2**10
-    raised_to_pow = 0
-    dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
-    while size > power:
-        size /= power
-        raised_to_pow += 1
-    return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
-
 
 def time_formatter(milliseconds: int) -> str:
     """Inputs time in milliseconds, to get beautified time,
@@ -294,7 +278,7 @@ async def download(target_file):
             now = time.time()
             diff = now - c_time
             percentage = downloader.get_progress() * 100
-            speed = downloader.get_speed()
+            speed = downloader.get_speed(human=True)
             elapsed_time = round(diff) * 1000
             progress_str = "[{0}{1}] {2}%".format(
                 ''.join(["▰" for i in range(math.floor(percentage / 10))]),
@@ -307,7 +291,8 @@ async def download(target_file):
                 \nURL: {url}\
                 \nFile Name: {file_name}\
                 \n{progress_str}\
-                \n{humanbytes(downloaded)} of {humanbytes(total_length)}\
+                \n{old_speed_convert(downloaded)} of {old_speed_convert(total_length)}\
+                \nSPEED : {speed}\
                 \nETA: {estimated_total_time}"
 
                 if round(diff %

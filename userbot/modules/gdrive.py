@@ -22,7 +22,8 @@ from userbot.events import register
 from mimetypes import guess_type
 import httplib2
 import subprocess
-from userbot.modules.upload_download import progress, humanbytes, time_formatter
+from userbot.modules.upload_download import progress, time_formatter
+from userbot.modules.www import old_speed_convert
 
 # Path to token json file, it should be in same directory as script
 G_DRIVE_TOKEN_FILE = "./auth_token.txt"
@@ -71,7 +72,7 @@ async def gdrive_upload_function(dryb):
             now = time.time()
             diff = now - c_time
             percentage = downloader.get_progress() * 100
-            speed = downloader.get_speed()
+            speed = downloader.get_speed(human=True)
             elapsed_time = round(diff) * 1000
             progress_str = "[{0}{1}] {2}%".format(
                 ''.join(["▰" for i in range(math.floor(percentage / 10))]),
@@ -84,7 +85,8 @@ async def gdrive_upload_function(dryb):
                 \nURL: {url}\
                 \nFile Name: {file_name}\
                 \n{progress_str}\
-                \n{humanbytes(downloaded)} of {humanbytes(total_length)}\
+                \n{old_speed_convert(downloaded)} of {old_speed_convert(total_length)}\
+                \nSPEED : {speed}\
                 \nETA: {estimated_total_time}"
 
                 if round(diff %
@@ -398,9 +400,9 @@ async def gdrive_list_file_md(service, file_id):
             # is a file.
             file_meta_data["mimeType"] = file["mimeType"]
             file_meta_data["md5Checksum"] = file["md5Checksum"]
-            file_meta_data["fileSize"] = str(humanbytes(int(file["fileSize"])))
+            file_meta_data["fileSize"] = str(old_speed_convert(int(file["fileSize"])))
             file_meta_data["quotaBytesUsed"] = str(
-                humanbytes(int(file["quotaBytesUsed"])))
+                old_speed_convert(int(file["quotaBytesUsed"])))
             file_meta_data["previewURL"] = file["downloadUrl"]
         return json.dumps(file_meta_data, sort_keys=True, indent=4)
     except Exception as e:
