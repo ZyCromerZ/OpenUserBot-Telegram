@@ -43,10 +43,10 @@ Server :
 
 Info :
     Ping     : `{result['ping']}`
-    Sent     : `{speed_convert(result['bytes_sent'])}`
-    Received : `{speed_convert(result['bytes_received'])}`
-    Download : `{speed_convert(result['download'] / 8) }/s`
-    Upload   : `{speed_convert(result['upload'] / 8) }/s`"""
+    Sent     : `{speed_convert(result['bytes_sent'])}` (`{old_speed_convert(result['bytes_sent'])}`)
+    Received : `{speed_convert(result['bytes_received'])}` (`{old_speed_convert(result['bytes_received'])}`)
+    Download : `{speed_convert(result['download'] / 8) }/s` (`{old_speed_convert(result['download'])}/s`)
+    Upload   : `{speed_convert(result['upload'] / 8) }/s` (`{old_speed_convert(result['upload'])}/s`)"""
     await spd.delete()
     await spd.client.send_file(spd.chat.id,
                              getPathImg,
@@ -60,7 +60,7 @@ def speed_convert(ukuran: float) -> str:
     """
     if not ukuran:
         return ""
-    totals_isi = {0: '', 1: 'Kb', 2: 'Mb', 3: 'Gb', 4: 'Tb'}
+    totals_isi = {0: '', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
     totals = 1024
     no = 0
     while ukuran > totals:
@@ -68,6 +68,18 @@ def speed_convert(ukuran: float) -> str:
         no += 1
     return "{:.2f} {}B".format(ukuran, totals_isi[no])
 
+
+def old_speed_convert(size):
+    """
+    Hi human, you can't read bytes?
+    """
+    power = 2**10
+    zero = 0
+    units = {0: '', 1: 'Kb', 2: 'Mb', 3: 'Gb', 4: 'Tb'}
+    while size > power:
+        size /= power
+        zero += 1
+    return f"{round(size, 2)} {units[zero]}"
 
 @register(outgoing=True, pattern="^.dc$")
 async def neardc(event):
