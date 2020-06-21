@@ -40,7 +40,7 @@ from telethon.tl.types import (DocumentAttributeFilename, DocumentAttributeStick
                                InputStickerSetID, InputStickerSetShortName,
                                MessageMediaPhoto)
 from userbot.modules.upload_download import progress, time_formatter
-from userbot.modules.www import old_speed_convert
+from userbot.modules.www import speed_convert
 from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
 from userbot.events import register
 

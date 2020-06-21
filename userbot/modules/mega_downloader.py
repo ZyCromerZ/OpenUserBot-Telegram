@@ -33,7 +33,7 @@ from urllib.error import HTTPError
 
 from userbot import CMD_HELP, LOGS
 from userbot.events import register
-from userbot.modules.www import old_speed_convert
+from userbot.modules.www import speed_convert
 
 
 async def subprocess_run(cmd, megadl):
@@ -106,7 +106,7 @@ async def mega_downloader(megadl):
                 f"\n`{file_name}`\n\n"
                 "Status:"
                 f"\n**{status}** | {progress} `{percentage}%`"
-                f"\n{old_speed_convert(downloaded)} of {old_speed_convert(total_length)}"
+                f"\n{speed_convert(downloaded)} of {speed_convert(total_length)}"
                 f" @ {speed}"
                 f"\nETA: {estimated_total_time}"
             )
