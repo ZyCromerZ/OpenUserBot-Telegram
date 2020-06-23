@@ -86,7 +86,7 @@ async def set_afk(afk_e):
     else:
         await afk_e.edit("**Going AFK!**")
     if user.last_name:
-        if " [ OFFLINE ]" in last_name:
+        if not " [ OFFLINE ]" in user.last_name:
             await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
     else:
         await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
@@ -121,7 +121,7 @@ async def set_afk(brb_e):
     else:
         await brb_e.edit("**Going AFK!**")
     if user.last_name:
-        if " [ OFFLINE ]" in last_name:
+        if not " [ OFFLINE ]" in user.last_name:
             await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
     else:
         await brb_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
@@ -322,5 +322,6 @@ CMD_HELP.update({
     "`.afk` [Optional Reason]\
 \nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
 you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
-"
+\n`brb` [Optional Reason]\
+\nUsage: Sets you as afk.\nSame as .afk"
 })
