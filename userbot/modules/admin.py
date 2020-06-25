@@ -617,8 +617,6 @@ async def get_admin(show):
 @register(outgoing=True, pattern="^.adms$")
 async def get_admins(show):
     """ For .admins command, list all of the admins of the chat. """
-    message = show.text
-    await message.delete()
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = f'<b>Admins in {title}:</b> \n'
@@ -634,6 +632,7 @@ async def get_admins(show):
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     await show.client.send_message(BOTLOG_CHATID, mentions,parse_mode="html")
+    await show.delete()
 
 
 @register(outgoing=True, pattern="^.pin(?: |$)([\s\S]*)")
@@ -966,8 +965,6 @@ async def get_bots(show):
 @register(outgoing=True, pattern="^.bts$", groups_only=True)
 async def get_botss(show):
     """ For .bots command, list all of the bots of the chat. """
-    message = show.text
-    await message.delete()
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = f'<b>Bots in {title}:</b>\n'
@@ -999,6 +996,7 @@ async def get_botss(show):
             reply_to=show.id,
         )
         remove("botlist.txt")
+    await show.delete()
 
   
 
