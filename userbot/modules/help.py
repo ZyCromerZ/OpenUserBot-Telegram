@@ -37,11 +37,11 @@ async def help(event):
             if realnoPerBaris == TotalPerBaris:
                 realno += 1
                 realnoPerBaris = 0
+                string += "\n"
                 if realno == TotalHelp:
-                    string += "\n"
                     await event.reply(string)
                     realno = 0
                     string = ""
-                else:
-                    string += " , "
+            else:
+                string += " , "
         await event.reply(string)
