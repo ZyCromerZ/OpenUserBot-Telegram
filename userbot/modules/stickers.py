@@ -80,7 +80,7 @@ async def kang(args):
     else:
         await args.edit("`I can't kang that...`")
         return
-
+    emoji = "😳"
     if photo:
         splat = args.text.split()
         if not emojibypass:
