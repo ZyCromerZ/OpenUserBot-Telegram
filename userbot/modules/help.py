@@ -27,11 +27,13 @@ async def help(event):
 
         Sorrted.sort()
         string = ""
+        SetRealNo=0
         realno = 0
         realnoPerBaris = 0
-        TotalHelp = 50
+        TotalHelp = 20
         TotalPerBaris = 3
         for i in Sorrted:
+            SetRealNo += 1
             realnoPerBaris += 1
             string += "`" + str(i) + "`"
             if realnoPerBaris == TotalPerBaris:
@@ -43,5 +45,6 @@ async def help(event):
                     realno = 0
                     string = ""
             else:
-                string += " , "
+                if SetRealNo < len(Sorrted):
+                    string += " , "
         await event.reply(string)
