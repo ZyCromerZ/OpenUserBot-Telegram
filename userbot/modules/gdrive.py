@@ -23,7 +23,7 @@ from mimetypes import guess_type
 import httplib2
 import subprocess
 from userbot.modules.upload_download import progress, time_formatter
-from userbot.modules.www import speed_convert
+from userbot.modules.www import speed_convert_byte
 
 # Path to token json file, it should be in same directory as script
 G_DRIVE_TOKEN_FILE = "./auth_token.txt"
@@ -85,7 +85,7 @@ async def gdrive_upload_function(dryb):
                 \nURL: {url}\
                 \nFile Name: {file_name}\
                 \n{progress_str}\
-                \n{speed_convert(downloaded)} of {speed_convert(total_length)}\
+                \n{speed_convert_byte(downloaded)} of {speed_convert_byte(total_length)}\
                 \nSPEED : {speed}\
                 \nETA: {estimated_total_time}"
 
@@ -400,9 +400,9 @@ async def gdrive_list_file_md(service, file_id):
             # is a file.
             file_meta_data["mimeType"] = file["mimeType"]
             file_meta_data["md5Checksum"] = file["md5Checksum"]
-            file_meta_data["fileSize"] = str(speed_convert(int(file["fileSize"])))
+            file_meta_data["fileSize"] = str(speed_convert_byte(int(file["fileSize"])))
             file_meta_data["quotaBytesUsed"] = str(
-                speed_convert(int(file["quotaBytesUsed"])))
+                speed_convert_byte(int(file["quotaBytesUsed"])))
             file_meta_data["previewURL"] = file["downloadUrl"]
         return json.dumps(file_meta_data, sort_keys=True, indent=4)
     except Exception as e:

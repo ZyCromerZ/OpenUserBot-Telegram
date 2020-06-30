@@ -43,10 +43,10 @@ Server :
 
 Info :
     Ping     : `{result['ping']}`
-    Sent     : `{speed_convert(result['bytes_sent'])}` (`{old_speed_convert(result['bytes_sent'])}`)
-    Received : `{speed_convert(result['bytes_received'])}` (`{old_speed_convert(result['bytes_received'])}`)
-    Download : `{speed_convert(result['download'] / 8) }/s` (`{old_speed_convert(result['download']) / 8}/s`)
-    Upload   : `{speed_convert(result['upload'] / 8) }/s` (`{old_speed_convert(result['upload']) / 8}/s`)"""
+    Sent     : `{speed_convert_byte(result['bytes_sent'] * 8)}` ({speed_convert_bit(result['bytes_sent'] * 8)}`)
+    Received : `{speed_convert_byte(result['bytes_received'] * 8)}` ({speed_convert_bit(result['bytes_received'] * 8)}`)
+    Download : `{speed_convert_byte(result['download']) }/s` (`{speed_convert_bit(result['download']) }/s`)
+    Upload   : `{speed_convert_byte(result['upload']) }/s` (`{speed_convert_bit(result['upload']) }/s`)"""
     await spd.delete()
     await spd.client.send_file(spd.chat.id,
                              getPathImg,
@@ -54,9 +54,9 @@ Info :
     os.remove(getPathImg)
 
 
-def speed_convert(ukuran: float) -> str:
+def speed_convert_bit(ukuran: float) -> str:
     """
-    Hi human, you can't read bytes?
+    Hi human, you can't read bit?
     """
     if not ukuran:
         return ""
@@ -69,7 +69,7 @@ def speed_convert(ukuran: float) -> str:
     return "{:.2f} {}B".format(ukuran, totals_isi[no])
 
 
-def old_speed_convert(size):
+def speed_convert_byte(size: float) -> str:
     """
     Hi human, you can't read bytes?
     """
