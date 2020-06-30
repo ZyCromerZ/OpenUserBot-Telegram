@@ -32,7 +32,7 @@ from telethon.tl.types import DocumentAttributeVideo, MessageMediaPhoto
 from userbot import GDRIVE_FOLDER_ID as GDRIVE_FOLDER
 from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.modules.www import speed_convert_byte
+from userbot.modules.www import speed_convert_bit
 
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./")
 
@@ -54,8 +54,8 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
             round(percentage, 2))
         tmp = progress_str + \
             "{0} of {1}\nETA: {2}".format(
-                speed_convert_byte(current),
-                speed_convert_byte(total),
+                speed_convert_bit(current),
+                speed_convert_bit(total),
                 time_formatter(estimated_total_time)
             )
         if file_name:
@@ -291,7 +291,7 @@ async def download(target_file):
                 \nURL: {url}\
                 \nFile Name: {file_name}\
                 \n{progress_str}\
-                \n{speed_convert_byte(downloaded)} of {speed_convert_byte(total_length)}\
+                \n{speed_convert_bit(downloaded)} of {speed_convert_bit(total_length)}\
                 \nSPEED : {speed}\
                 \nETA: {estimated_total_time}"
 

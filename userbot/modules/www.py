@@ -43,8 +43,8 @@ Server :
 
 Info :
     Ping     : `{result['ping']}`
-    Sent     : `{speed_convert_byte(result['bytes_sent'] * 8)}` (`{speed_convert_bit(result['bytes_sent'] * 8)}`)
-    Received : `{speed_convert_byte(result['bytes_received'] * 8)}` (`{speed_convert_bit(result['bytes_received'] * 8)}`)
+    Sent     : `{speed_convert_bit(result['bytes_sent'])}`
+    Received : `{speed_convert_bit(result['bytes_received'])}`
     Download : `{speed_convert_byte(result['download']) }/s` (`{speed_convert_bit(result['download']) }/s`)
     Upload   : `{speed_convert_byte(result['upload']) }/s` (`{speed_convert_bit(result['upload']) }/s`)"""
     await spd.delete()
