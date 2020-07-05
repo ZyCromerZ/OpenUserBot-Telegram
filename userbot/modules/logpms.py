@@ -28,6 +28,7 @@ async def monito_p_m_s(event):
     global NC_LOG_P_M_S
     global PM_LOGGR_BOT_API_ID
     global BOTLOG_CHATID
+    global NO_PM_LOG_USERS
     sender = await event.get_sender()
     if PM_LOGGR_BOT_API_ID == "-100":
         PM_LOGGR_BOT_API_ID = BOTLOG_CHATID
@@ -48,6 +49,7 @@ async def monito_p_m_s(event):
 #@borg.on(admin_cmd(pattern="nolog ?(.*)"))
 @register(pattern="^.nolog(?: |$)([\s\S]*)")
 async def approve_p_m(event):
+    global NO_PM_LOG_USERS
     if event.fwd_from:
         return
     reason = event.pattern_match.group(1)
@@ -63,6 +65,7 @@ async def approve_p_m(event):
                 
 @register(pattern="^.log(?: |$)([\s\S]*)")
 async def approve_p_m(event):
+    global NO_PM_LOG_USERS
     if event.fwd_from:
         return
     reason = event.pattern_match.group(1)
