@@ -18,10 +18,16 @@ from userbot.events import register
 
 
 NO_PM_LOG_USERS = []
+global NC_LOG_P_M_S
+global PM_LOGGR_BOT_API_ID
+global BOTLOG_CHATID
 
 #@borg.on(admin_cmd(incoming=True, func=lambda e: e.is_private))
 @register(incoming=True, disable_edited=True)
 async def monito_p_m_s(event):
+    global NC_LOG_P_M_S
+    global PM_LOGGR_BOT_API_ID
+    global BOTLOG_CHATID
     sender = await event.get_sender()
     if PM_LOGGR_BOT_API_ID == "-100":
         PM_LOGGR_BOT_API_ID = BOTLOG_CHATID
