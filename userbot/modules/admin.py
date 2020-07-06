@@ -1299,6 +1299,10 @@ CMD_HELP.update({
 \nUsage: Retrieves a list of admins in the chat.\
 \n\n`.adms`\
 \nUsage: Retrieves a list of admins in the chat and send info to ur bot logs.\
+\n\n`.bots`\
+\nUsage: Retrieves a list of bots in the chat.\
+\n\n`.bts`\
+\nUsage: Retrieves a list of bots in the chat and send info to ur bot logs \
 \n\n`.kick`\
 \nUsage: kick users from groups.\
 \n\n`.users` or `.users` <name of member>\
