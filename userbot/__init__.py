@@ -280,3 +280,6 @@ AFKREASON = None
 
 # QUOTES API
 QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
+
+# bit.ly module
+BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)

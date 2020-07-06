@@ -221,6 +221,11 @@
     "QUOTES_API_TOKEN":{
       "description": "Token for QuotesAPI. [Get one from - http://antiddos.systems/login]",
       "required": false
+    },
+    "BITLY_TOKEN": {
+      "description": "Your Bit.ly API key, get it from 'https://bitly.com/a/sign_up'",
+      "value": "YOUR TOKEN",
+      "required": false
     }
   },
   "addons": [
