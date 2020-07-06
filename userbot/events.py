@@ -72,11 +72,6 @@ def register(**args):
             if check.via_bot_id and not insecure and check.out:
                 # Ignore outgoing messages via inline bots for security reasons
                 return
-       
-            if not LOGSPAMMER:
-                send_to = check.chat_id
-            else:
-                send_to = BOTLOG_CHATID
 
             if not trigger_on_fwd and check.fwd_from:
                 return
@@ -149,9 +144,9 @@ def register(**args):
                     file.write(ftext)
                     file.close()
 
-                    await check.client.send_file(send_to,
-                                                 "error.log",
-                                                 caption=text)
+                    # await check.client.send_file(BOTLOG_CHATID,
+                    #                              "error.log",
+                    #                              caption=text)
                     remove("error.log")
             else:
                 pass
