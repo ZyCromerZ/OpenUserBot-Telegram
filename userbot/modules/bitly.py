@@ -45,6 +45,6 @@ async def shortener(short):
 CMD_HELP.update({
     "bitly":
     "\n\n`.bitly` <url> or reply to message contains url\
-     \nUsage: Shorten link using bit.ly API\"
+\nUsage: Shorten link using bit.ly API"
 })
 
