@@ -53,12 +53,12 @@ async def telegraphs(graph):
                     await graph.edit("Uploaded to https://telegra.ph{} in {} seconds.".format(media_urls[0], (ms + ms_two)), link_preview=True)
             elif input_str == "text":
                 user_object = await bot.get_entity(r_message.from_id)
-                title_of_page = user_object.first_name + datetime.now() # + " " + user_object.last_name
+                title_of_page = user_object.first_name + datetime.now().strftime('%Y-%m-%d-%H-%I-%S') # + " " + user_object.last_name
                 # apparently, all Users do not have last_name field
                 page_content = r_message.message
                 if r_message.media:
                     if page_content != "":
-                        title_of_page = page_content + datetime.now()
+                        title_of_page = page_content + datetime.now().strftime('%Y-%m-%d-%H-%I-%S')
                     downloaded_file_name = await bot.download_media(
                         r_message,
                         TEMP_DOWNLOAD_DIRECTORY
