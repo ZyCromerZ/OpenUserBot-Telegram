@@ -68,3 +68,12 @@ csvfaker
 pymongo[srv]
 youtube_search
 spcli
+PyPDF2
+cryptg
+patool
+setuptools>=28.8.0
+justwatch
+deezloader
+zipfile38
+bitlyshortener
+geopy
