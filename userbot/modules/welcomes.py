@@ -1,5 +1,5 @@
 from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID, is_redis_alive, is_mongo_alive
 from telethon.events import ChatAction
 
 
