@@ -46,7 +46,7 @@ wikipedia>=1.4.0
 coffeehouse>=2.1.0
 git+https://github.com/johnwmillr/LyricsGenius.git
 lyricsgenius
-redis>=3.3.10
+redis>=3.5.3
 beautifulsoup4>=4.8.1
 youtube-dl>=2019.9.28
 PyGithub
