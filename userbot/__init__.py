@@ -133,7 +133,7 @@ YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
 
 # Default .alive logo
-ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/bc4b184058f13932957d0.jpg"
+ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/6a5d97a9c9d45a5ee9bd2.mp4"
 
 # Time & Date - Country and Time Zone
 COUNTRY = str(os.environ.get("COUNTRY", ""))
