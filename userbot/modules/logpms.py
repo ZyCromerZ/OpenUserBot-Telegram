@@ -44,7 +44,7 @@ async def monito_p_m_s(event):
                         silent=True
                     )
                 except Exception as e:
-                    # await event.client.send_message(int(BOTLOG_CHATID), str(e),parse_mode="html",silent=True)
+                    return
 
 #@borg.on(admin_cmd(pattern="nolog ?(.*)"))
 @register(pattern="^.nolog(?: |$)([\s\S]*)")
