@@ -134,9 +134,9 @@ async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     output = ("`i am still alive bruh `\n"
              f"`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx `\n"
-             f"•  ⚙️ `Telethon`     : `V{version.__version__} `\n"
-             f"•  🐍 `Python`      : `V{python_version()} `\n"
-             f"•  👤 `User`        : `{DEFAULTUSER}` \n"
+             f"•  ⚙️ `Telethon    :` `V{version.__version__} `\n"
+             f"•  🐍 `Python      :` `V{python_version()} `\n"
+             f"•  👤 `User        :` `{DEFAULTUSER}` \n"
              f"`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx `\n")
     if ALIVE_LOGO:
         logo = ALIVE_LOGO
