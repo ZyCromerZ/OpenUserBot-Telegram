@@ -144,9 +144,9 @@ def register(**args):
                     file.write(ftext)
                     file.close()
 
-                    # await check.client.send_file(BOTLOG_CHATID,
-                    #                              "error.log",
-                    #                              caption=text)
+                    await check.client.send_file(BOTLOG_CHATID,
+                                                 "error.log",
+                                                 caption=text)
                     remove("error.log")
             else:
                 pass
