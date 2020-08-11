@@ -26,7 +26,7 @@ from telethon.errors.rpcerrorlist import (UserIdInvalidError,
 from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest)
-from telethon.tl.functions.messages import (UpdatePinnedMessageRequest, EditChatDefaultBannedRightsRequest)
+from telethon.tl.functions.messages import UpdatePinnedMessageRequest
 from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
@@ -987,9 +987,10 @@ async def locks(event):
     )
     try:
         await event.client(
-            EditChatDefaultBannedRightsRequest(peer=peer_id,
+            functions.messages.EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                banned_rights=lock_rights))
         await event.edit(f"`Locked {what} for this chat !!`")
+        return
     except BaseException as e:
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
@@ -1075,9 +1076,10 @@ async def rem_locks(event):
     )
     try:
         await event.client(
-            EditChatDefaultBannedRightsRequest(peer=peer_id,
+            functions.messages.EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                banned_rights=unlock_rights))
         await event.edit(f"`Unlocked {what} for this chat !!`")
+        return
     except BaseException as e:
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
