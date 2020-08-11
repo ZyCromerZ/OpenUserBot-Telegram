@@ -22,6 +22,7 @@ async def telegraphs(grop):
                     # Telegram, no longer allows creating a chat with ourselves
                     title=group_name
                 ))
+                created_chat_id = result.chats[0].id
                 result = await grop.client(functions.messages.ExportChatInviteRequest(
                     peer=created_chat_id,
                 ))
