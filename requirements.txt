@@ -20,7 +20,7 @@ gTTS-token>=1.1.3
 hachoir>=3.0a5
 REPO_LINK
 heroku3>=3.4.0
-httplib2==0.15.0
+httplib2>=0.18.1
 psutil
 # heroku
 html_telegraph_poster
@@ -43,7 +43,7 @@ requests>=2.18.4
 search-engine-parser>=0.4.2
 speedtest-cli>=2.1.2
 sqlalchemy>=1.2
-telethon==1.15.0
+telethon>=1.16.1
 telethon-session-sqlalchemy>=0.2.6
 urbandict>=0.5
 wikipedia>=1.4.0
