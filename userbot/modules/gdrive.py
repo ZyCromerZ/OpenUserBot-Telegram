@@ -809,7 +809,7 @@ async def lists(gdrive):
     return
 
 
-@register(pattern="^.gdf (mkdir|rm|chck) (.*)", outgoing=True)
+@register(pattern="^.gdf (mkdir|rm|check) (.*)", outgoing=True)
 async def google_drive_managers(gdrive):
     """ - Google Drive folder/file management - """
     await gdrive.edit("`Sending information...`")
@@ -911,7 +911,7 @@ async def google_drive_managers(gdrive):
                     f"`{name}`\n"
                     "`Status` : **OK**\n\n"
                 )
-        elif exe == "chck":
+        elif exe == "check":
             """ - Check file/folder if exists - """
             try:
                 f = result.get('files', [])[0]
