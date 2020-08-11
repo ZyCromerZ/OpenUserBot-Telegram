@@ -26,7 +26,7 @@ from telethon.errors.rpcerrorlist import (UserIdInvalidError,
 from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest)
-from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+from telethon.tl.functions.messages import (UpdatePinnedMessageRequest, EditChatDefaultBannedRightsRequest)
 from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
