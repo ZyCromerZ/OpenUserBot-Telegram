@@ -1,5 +1,6 @@
 wheel
 aiohttp
+aria2p
 async_generator
 asyncurban
 cowpy

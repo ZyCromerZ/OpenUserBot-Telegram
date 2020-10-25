@@ -234,6 +234,10 @@
       "description": "Your Bit.ly API key, get it from 'https://bitly.com/a/sign_up'",
       "value": "YOUR TOKEN",
       "required": false
+    },
+    "DATABASE_URL": {
+      "description": "your previous database url(if u have maybe)",
+      "required": false
     }
   },
   "addons": [

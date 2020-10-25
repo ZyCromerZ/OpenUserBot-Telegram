@@ -52,6 +52,7 @@ RUN apk add --no-cache=true --update \
     sqlite-dev \
     libc-dev \
     sudo \
+    aria2 \
     chromium \
     chromium-chromedriver \
     zlib-dev \
