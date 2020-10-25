@@ -5,8 +5,10 @@
 #
 """ Userbot help command """
 
-from userbot import CMD_HELP
+from telethon import events
+import asyncio
 from userbot.events import register
+from userbot import CMD_HELP
 
 
 @register(outgoing=True, pattern="^.help(?: |$)([\s\S]*)")
@@ -17,7 +19,7 @@ async def help(event):
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Please specify a valid module name.")
+            await event.edit("**Module doesn't exist or Module name is invalid**😔")
     else:
         await event.edit("Please specify which module do you want help for !!\
             \nUsage: .help <module name>")

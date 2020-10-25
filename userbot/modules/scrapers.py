@@ -49,6 +49,7 @@ from userbot.modules.www import speed_convert_bit
 from userbot.google_images_download import googleimagesdownload
 import subprocess
 from datetime import datetime
+import asyncurban
 
 
 CARBONLANG = "auto"
@@ -62,7 +63,7 @@ async def setlang(prog):
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
 
-@register(outgoing=True, pattern="^.carbon")
+@register(outgoing=True, pattern="^.crb")
 async def carbon_api(e):
     """ A Wrapper for carbon.now.sh """
     await e.edit("`Processing..`")
@@ -265,6 +266,7 @@ async def _(event):
         await event.edit("Text: **{}**\n\nMeaning: **{}**\n\nExample: __{}__".format(mean.word, mean.definition, mean.example))
     except asyncurban.WordNotFoundError:
         await event.edit("No result found for **" + word + "**")
+        
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
@@ -699,7 +701,7 @@ CMD_HELP.update({
 })
 CMD_HELP.update({
     'carbon':
-    '.carbon <text> [or reply]\
+    '.crb <text> [or reply]\
         \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.'
 })
 CMD_HELP.update(

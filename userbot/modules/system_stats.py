@@ -143,7 +143,9 @@ async def amireallyalive(alive):
         await bot.send_file(alive.chat_id, logo, caption=output)
         await alive.delete()
     else:
-        await alive.edit(output)
+        await alive.edit(output)            
+
+
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):

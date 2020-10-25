@@ -1,6 +1,5 @@
 wheel
 aiohttp
-aria2p
 async_generator
 asyncurban
 cowpy
@@ -79,4 +78,6 @@ justwatch
 deezloader
 zipfile38
 bitlyshortener
+numpy>=1.11.1
+colour
 geopy

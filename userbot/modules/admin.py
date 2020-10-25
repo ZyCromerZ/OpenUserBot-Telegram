@@ -642,7 +642,7 @@ async def get_admins(show):
     await show.delete()
 
 
-@register(outgoing=True, pattern="^.pin(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pinme(?: |$)(.*)")
 async def pin(msg):
     """ For .pin command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
@@ -685,6 +685,29 @@ async def pin(msg):
             f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
             f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
             f"LOUD: {not is_silent}")
+
+@register(outgoing=True, pattern="^.cpinme(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    silent = True
+    input_str = event.pattern_match.group(1)
+    if input_str:
+        silent = False
+    if event.message.reply_to_msg_id is not None:
+        message_id = event.message.reply_to_msg_id
+        try:
+            await bot(functions.messages.UpdatePinnedMessageRequest(
+                event.chat_id,
+                message_id,
+                silent
+            ))
+        except Exception as e:
+            await event.edit(str(e))
+        else:
+            await event.delete()
+    else:
+        await event.edit("Reply to a message to pin the message in this Channel.")
 
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
@@ -1308,6 +1331,11 @@ CMD_HELP.update({
 \n\n`.kick`\
 \nUsage: kick users from groups.\
 \n\n`.users` or `.users` <name of member>\
+\n\n.pinme <reply/tag>\
+\nUsage: pins the replied/tagged message on the top the chat silently.\
+\n\n.cpinme <reply/tag>\
+\nUsage: pins the replied/tagged message on the top the chat LOUDLY.\
+\n\n.users or .users <name of member>\
 \nUsage: Retrieves all (or queried) users in the chat.\
 \n\n`.setgpic` <reply to image>\
 \nUsage: Changes the group's display picture.\
