@@ -10,3 +10,4 @@ userbot/modules/sql_helper/__pycache__/*
 .vscode/*
 bin/*
 TG_BOT_TOKEN.session
+venv
