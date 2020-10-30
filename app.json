@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/sahyam2019/oub-remix",
+  "repository": "https://github.com/ZyCromerZ/OpenUserBot-Telegram",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
   "success_url": "https://t.me/PPE_Support",
   "stack": "container",
@@ -234,7 +234,7 @@
   }, {
     "url": "https://github.com/opendoor-labs/heroku-buildpack-p7zip"
   }, {
-    "url": "https://github.com/amivin/aria2-heroku"
+    "url": "https://github.com/ZyCromerZ/aria2-heroku"
   }, {
     "url": "https://github.com/stevo550/buildpack-slug-cleaner"
   }]

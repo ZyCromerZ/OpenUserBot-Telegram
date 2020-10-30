@@ -23,7 +23,7 @@ async def usit(e):
 async def var(m):
     await m.edit(
         f"Here's a list of VARS for {DEFAULTUSER} on **oub-remix**:\n"
-        "\n[HEROKU VARS](https://raw.githubusercontent.com/sahyam2019/oub-remix/sql-extended/varshelper.txt)")
+        "\n[HEROKU VARS](https://raw.githubusercontent.com/sahyam2019/oub-remix/master/varshelper.txt)")
     
     
 CMD_HELP.update({
