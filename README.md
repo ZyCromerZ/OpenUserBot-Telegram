@@ -1,7 +1,7 @@
 original repo : https://github.com/sahyam2019/oub-remix
 # Project OpenUserBot Remix
 
-![logo](https://telegra.ph/file/b17eb811d1666426e7f3b.jpg)
+![logo](https://telegra.ph/file/1349319df2ce418208c97.jpg)
 
 ```
 #include <std/disclaimer.h>
