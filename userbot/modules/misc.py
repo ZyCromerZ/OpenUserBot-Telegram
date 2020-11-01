@@ -98,13 +98,13 @@ async def bot_community(community):
 async def bot_support(wannahelp):
     """ For .support command, just returns the group link. """
     await wannahelp.edit(
-        "Join the oub-remix Channel: @oub-remix \
-        \nJoin the oub-remix Chat: @remixsupport")
+        "no n never :p")
 
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
-    await e.edit("[Heyworld](https://github.com/sahyam2019)")
+    await e.edit(f"[original Heyworld](https://github.com/sahyam2019)\
+                    \n[Custom by ZyCromerZ](https://github.com/ZyCromerZ")
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -139,7 +139,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        "Click [here](https://github.com/ZyCromerZ/OpenUserBot-Telegram) to open oub-remix's GitHub page."
+        "Click [here](https://github.com/ZyCromerZ/OpenUserBot-Telegram) to open ZyC userbot GitHub page."
     )
 
     
