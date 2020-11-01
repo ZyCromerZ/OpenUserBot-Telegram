@@ -6,6 +6,9 @@
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
 
+import wget
+import os
+
 from datetime import datetime
 
 from speedtest import Speedtest
@@ -25,32 +28,57 @@ async def speedtst(spd):
     test.upload()
     test.results.share()
     result = test.results.dict()
+    getPathImg = wget.download(result['share'])
 
-    await spd.edit("`"
-                   "Started at "
-                   f"{result['timestamp']} \n\n"
-                   "Download "
-                   f"{speed_convert(result['download'])} \n"
-                   "Upload "
-                   f"{speed_convert(result['upload'])} \n"
-                   "Ping "
-                   f"{result['ping']} \n"
-                   "ISP "
-                   f"{result['client']['isp']}"
-                   "`")
+    result=f"""Started at `{result['timestamp']}`
+Client :
+    ISP      : `{result['client']['isp']}`
+    Country  : `{result['client']['country']}`
+
+Server :
+    Name     : `{result['server']['name']}`
+    country  : `{result['server']['country']}` , `{result['server']['cc']}`
+    Latency  : `{result['server']['latency']}`
+
+Info :
+    Ping     : `{result['ping']}`
+    Sent     : `{speed_convert_bit(result['bytes_sent'])}`
+    Received : `{speed_convert_bit(result['bytes_received'])}`
+    Download : `{speed_convert_byte(result['download']) }/s` (`{speed_convert_bit(result['download']) }/s`)
+    Upload   : `{speed_convert_byte(result['upload']) }/s` (`{speed_convert_bit(result['upload']) }/s`)"""
+    await spd.delete()
+    await spd.client.send_file(spd.chat.id,
+                             getPathImg,
+                             caption=result)
+    os.remove(getPathImg)
+
+def speed_convert_bit(ukuran: float) -> str:
+    """
+    Hi human, you can't read bit?
+    """
+    if not ukuran:
+        return ""
+    totals_isi = {0: '', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
+    totals = 2**10
+    no = 0
+    while ukuran > totals:
+        ukuran /= totals
+        no += 1
+    return "{:.2f} {}B".format(ukuran, totals_isi[no])
 
 
-def speed_convert(size):
+def speed_convert_byte(size: float) -> str:
     """
     Hi human, you can't read bytes?
     """
+    total = size/8
     power = 2**10
     zero = 0
-    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
-    while size > power:
-        size /= power
+    units = {0: '', 1: 'Kb', 2: 'Mb', 3: 'Gb', 4: 'Tb'}
+    while total > power:
+        total /= power
         zero += 1
-    return f"{round(size, 2)} {units[zero]}"
+    return f"{round(total, 2)} {units[zero]}"
 
 
 
